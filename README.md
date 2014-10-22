@@ -1,4 +1,4 @@
-Prática I - Nadine e Dinei [02/2014]
+Prática I - Augusto e Juliano [10/2014]
 ======================
 
-Repositório da Prática I dos estudantes Nadine e Dinei
+Repositório da Prática I dos estudantes Augusto e Pires.
