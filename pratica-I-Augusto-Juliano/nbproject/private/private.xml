@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/model/Pro_categoria.java</file>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/model/Pro_produto.java</file>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/model/Pro_tipoproduto.java</file>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/model/Pro_marcas.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_tipocontatoDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_logDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_cidadeDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Fin_categoriamovimentacaoDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pro_tipoprodutoDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Fin_afcaixaDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_pessoaDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Fin_caixaDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pro_categoriaDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_estadoDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pro_produtoDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_pessoacontatosDAO.java</file>
         </group>
     </open-files>
 </project-private>

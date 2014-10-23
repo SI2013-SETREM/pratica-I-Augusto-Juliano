@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/farrapos</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">ha6dqqvd</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <mapping class="model.Pub_estado"/>
+    <mapping class="model.Pub_cidade"/>
+    <mapping class="model.Pub_log"/>
+    <mapping class="model.Pub_pessoa"/>
+    <mapping class="model.Pub_pessoacontatos"/>
+    <mapping class="model.Pub_tipocontato"/>
+    <mapping class="model.Fin_afcaixa"/>
+    <mapping class="model.Fin_caixa"/>
+    <mapping class="model.Fin_categoriamovimentacao"/>
+    <mapping class="model.Fin_movimentacaoprodutos"/>
+    <mapping class="model.Fin_parcela"/>
+    <mapping class="model.Fin_receitadespesa"/>
+    <mapping class="model.Pro_categoria"/>
+    <mapping class="model.Pro_marcas"/>
+    <mapping class="model.Pro_produto"/>
+    <mapping class="model.Pro_tipoproduto"/>
+  </session-factory>
+</hibernate-configuration>
