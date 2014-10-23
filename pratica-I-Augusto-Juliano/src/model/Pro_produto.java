@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -16,10 +17,13 @@ public class Pro_produto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pro_codigo")
     private int pro_codigo;
     @ManyToOne
+    @JoinColumn(name = "mar_codigo")
     private Pro_marcas mar_codigo;
     @ManyToOne
+    @JoinColumn(name = "cat_codigo")
     private Pro_categoria cat_codigo;
     @ManyToOne
+    @JoinColumn(name = "tpp_codigo")
     private Pro_tipoproduto tpp_codigo;
     private String pro_descricao;
     private Date pro_datacadastro;
