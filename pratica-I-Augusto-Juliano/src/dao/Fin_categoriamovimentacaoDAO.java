@@ -6,6 +6,7 @@
 package dao;
 
 import java.util.List;
+import model.Fin_caixa;
 import model.Fin_categoriamovimentacao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,6 +33,12 @@ public class Fin_categoriamovimentacaoDAO {
     public void update(Fin_categoriamovimentacao _fin_categoriamovimentacao) {
         Transaction t = session.beginTransaction();
         session.merge(_fin_categoriamovimentacao);
+        t.commit();
+    }
+    
+    public void delete(Fin_categoriamovimentacao _fin_categoriamovimentacao) {
+        Transaction t = session.beginTransaction();
+        session.delete(_fin_categoriamovimentacao);
         t.commit();
     }
 
