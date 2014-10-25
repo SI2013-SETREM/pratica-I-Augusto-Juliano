@@ -25,6 +25,7 @@ public class Fin_parcela {
     @ManyToOne
     @JoinColumn(name = "rcd_codigo")
     private Fin_receitadespesa rcd_codigo;
+    @ManyToOne
     private Fin_parcela par_pai;
     private Date par_datacadastro;
     private Date par_datavencimento;

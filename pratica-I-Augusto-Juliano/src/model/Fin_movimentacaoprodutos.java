@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -11,7 +12,7 @@ import javax.persistence.SequenceGenerator;
  * @author juliano
  */
 @Entity
-public class Fin_movimentacaoprodutos {
+public class Fin_movimentacaoprodutos implements Serializable {
 
     @Id
     @ManyToOne

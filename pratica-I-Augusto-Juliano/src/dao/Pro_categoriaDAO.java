@@ -46,6 +46,6 @@ public class Pro_categoriaDAO {
     }
 
     public List<Pro_categoria> findAll() {
-        return session.createQuery("from Pro_categoria").list();
+        return session.createQuery("from Pro_categoria order by cat_descricao").list();
     }
 }
