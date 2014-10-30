@@ -36,7 +36,9 @@ public class frmMenu extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -82,6 +84,15 @@ public class frmMenu extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\publico.png")); // NOI18N
         jMenu4.setText("Público");
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\cidade.png")); // NOI18N
+        jMenuItem5.setText("Cidades");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
         jMenuItem4.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\estado.png")); // NOI18N
         jMenuItem4.setText("Estados");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +101,15 @@ public class frmMenu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem4);
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\tipo de contato.png")); // NOI18N
+        jMenuItem6.setText("Tipo de Contatos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
 
         jMenu2.add(jMenu4);
 
@@ -130,6 +150,16 @@ public class frmMenu extends javax.swing.JFrame {
         frmLEstados frm = new frmLEstados();
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        frmLCidades frm = new frmLCidades();
+        frm.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        frmLTipocontato frm = new frmLTipocontato();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,5 +206,7 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,7 @@ public class Pub_tipocontato {
         this.tpc_descricao = tpc_descricao;
     }
 
-    public boolean isTpc_status() {
+    public boolean getTpc_status() {
         return tpc_status;
     }
 

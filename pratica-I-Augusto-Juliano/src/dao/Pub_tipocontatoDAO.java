@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import java.util.List;
@@ -17,6 +16,7 @@ import util.HibernateUtil;
  * @author juliano
  */
 public class Pub_tipocontatoDAO {
+
     private Session session;
 
     public Pub_tipocontatoDAO() {
@@ -46,6 +46,10 @@ public class Pub_tipocontatoDAO {
     }
 
     public List<Pub_tipocontato> findAll() {
-        return session.createQuery("from Pub_tipocontato").list();
+        return session.createQuery("from Pub_tipocontato order by tpc_descricao").list();
+    }
+
+    public List<Pub_tipocontato> findDesc(String _tpc_descricao) {
+        return session.createQuery("from Pub_tipocontato where tpc_descricao like '%" + _tpc_descricao + "%' order by tpc_descricao").list();
     }
 }
