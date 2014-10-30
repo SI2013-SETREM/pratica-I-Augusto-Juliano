@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/dao/Pro_marcasDAO.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>47</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmLCategorias.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMenu.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmLEstados.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmLMarcas.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMMarcas.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMEstados.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Pub_estadoDAO.java</file>
         </group>
     </open-files>
 </project-private>

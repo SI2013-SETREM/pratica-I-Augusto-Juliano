@@ -46,6 +46,10 @@ public class Pub_estadoDAO {
     }
 
     public List<Pub_estado> findAll() {
-        return session.createQuery("from Pub_estado").list();
+        return session.createQuery("from Pub_estado order by est_descricao").list();
+    }
+
+    public List<Pub_estado> findDesc(String _est_descricao) {
+        return session.createQuery("from Pub_estado where est_descricao like '%" + _est_descricao + "%' order by est_descricao").list();
     }
 }

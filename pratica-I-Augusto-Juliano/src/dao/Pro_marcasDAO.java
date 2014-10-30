@@ -41,6 +41,10 @@ public class Pro_marcasDAO {
     }
 
     public List<Pro_marcas> findAll() {
-        return session.createQuery("from Pro_marcas").list();
+        return session.createQuery("from Pro_marcas order by mar_descricao").list();
+    }
+    
+    public List<Pro_marcas> findDesc(String _mar_descricao) {
+        return session.createQuery("from Pro_marcas where mar_descricao like '%" + _mar_descricao + "%' order by mar_descricao").list();
     }
 }
