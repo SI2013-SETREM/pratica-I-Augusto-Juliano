@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import java.util.List;
@@ -17,6 +16,7 @@ import util.HibernateUtil;
  * @author juliano
  */
 public class Pro_produtoDAO {
+
     private Session session;
 
     public Pro_produtoDAO() {
@@ -46,6 +46,32 @@ public class Pro_produtoDAO {
     }
 
     public List<Pro_produto> findAll() {
-        return session.createQuery("from Pro_produto").list();
+        return session.createQuery("from Pro_produto order by pro_descricao asc").list();
+    }
+
+    public List<Pro_produto> findDesc(String _pro_descricao) {
+        return session.createQuery("from Pro_produto where pro_descricao like '%" + _pro_descricao + "%' order by pro_descricao asc").list();
+    }
+
+    public List<Pro_produto> findValorCompra(String _pro_valorcompra) {
+        return session.createQuery("from Pro_produto where pro_valorcompra = " + _pro_valorcompra + " order by pro_descricao asc").list();
+    }
+
+    public List<Pro_produto> findValorVenda(String _pro_valorvenda) {
+        return session.createQuery("from Pro_produto where pro_valorvenda = " + _pro_valorvenda + " order by pro_descricao asc").list();
+    }
+
+    public List<Pro_produto> findMarca(String _mar_descricao) {
+        return session.createCriteria("select pro.* from pro_produto pro inner join pro_marcas mar where mar.mar_descricao like '%" + _mar_descricao + "%' order by pro.pro_descricao asc").list();
+    }
+
+    public List<Pro_produto> findCategoria(String _cat_descricao) {
+        return session.createQuery("from Pro_produto pro inner join Pro_categoria cat on cat.cat_codigo = pro.cat_codigo"
+                + "where cat.cat_descricao like '%" + _cat_descricao + "%' order by pro.pro_descricao asc").list();
+    }
+
+    public List<Pro_produto> findTipoproduto(String _cat_descricao) {
+        return session.createQuery("from Pro_produto pro inner join Pro_categoria cat on cat.cat_codigo = pro.cat_codigo"
+                + "where cat.cat_descricao like '%" + _cat_descricao + "%' order by pro.pro_descricao asc").list();
     }
 }
