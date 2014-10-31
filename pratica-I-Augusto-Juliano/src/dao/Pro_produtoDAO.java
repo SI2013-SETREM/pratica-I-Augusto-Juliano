@@ -62,7 +62,7 @@ public class Pro_produtoDAO {
     }
 
     public List<Pro_produto> findMarca(String _mar_descricao) {
-        return session.createCriteria("select pro.* from pro_produto pro inner join pro_marcas mar where mar.mar_descricao like '%" + _mar_descricao + "%' order by pro.pro_descricao asc").list();
+        return session.createQuery("from Pro_produto pro INNER JOIN Pro_marcas mar where mar.mar_descricao like '%" + _mar_descricao + "%' order by pro_descricao asc").list();
     }
 
     public List<Pro_produto> findCategoria(String _cat_descricao) {
