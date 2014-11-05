@@ -6,6 +6,7 @@
 package view;
 
 import dao.Pro_produtoDAO;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pro_produto;
@@ -29,6 +30,7 @@ public class frmLProdutos extends javax.swing.JFrame {
     private int pro_codigo;
 
     public void filterGrid(String _filtro) {
+        DecimalFormat df = new DecimalFormat("#,###.00");
         daoProdutos = new Pro_produtoDAO();
         DefaultTableModel dados = (DefaultTableModel) jTable1.getModel();
         dados.setNumRows(0);
@@ -39,7 +41,7 @@ public class frmLProdutos extends javax.swing.JFrame {
                     "" + t.getPro_descricao(),
                     "" + t.getPro_valorcompra(),
                     "" + t.getPro_valorvenda(),
-                    "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                    "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                     "" + t.getMar_codigo().getMar_descricao(),
                     "" + t.getCat_codigo().getCat_descricao(),
                     "" + t.getTpp_codigo().getTpp_descricao(),
@@ -52,7 +54,7 @@ public class frmLProdutos extends javax.swing.JFrame {
                     "" + t.getPro_descricao(),
                     "" + t.getPro_valorcompra(),
                     "" + t.getPro_valorvenda(),
-                    "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                    "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                     "" + t.getMar_codigo().getMar_descricao(),
                     "" + t.getCat_codigo().getCat_descricao(),
                     "" + t.getTpp_codigo().getTpp_descricao(),
@@ -65,7 +67,7 @@ public class frmLProdutos extends javax.swing.JFrame {
                     "" + t.getPro_descricao(),
                     "" + t.getPro_valorcompra(),
                     "" + t.getPro_valorvenda(),
-                    "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                    "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                     "" + t.getMar_codigo().getMar_descricao(),
                     "" + t.getCat_codigo().getCat_descricao(),
                     "" + t.getTpp_codigo().getTpp_descricao(),
@@ -78,7 +80,7 @@ public class frmLProdutos extends javax.swing.JFrame {
                     "" + t.getPro_descricao(),
                     "" + t.getPro_valorcompra(),
                     "" + t.getPro_valorvenda(),
-                    "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                    "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                     "" + t.getMar_codigo().getMar_descricao(),
                     "" + t.getCat_codigo().getCat_descricao(),
                     "" + t.getTpp_codigo().getTpp_descricao(),
@@ -91,7 +93,7 @@ public class frmLProdutos extends javax.swing.JFrame {
                     "" + t.getPro_descricao(),
                     "" + t.getPro_valorcompra(),
                     "" + t.getPro_valorvenda(),
-                    "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                    "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                     "" + t.getMar_codigo().getMar_descricao(),
                     "" + t.getCat_codigo().getCat_descricao(),
                     "" + t.getTpp_codigo().getTpp_descricao(),
@@ -104,7 +106,7 @@ public class frmLProdutos extends javax.swing.JFrame {
                     "" + t.getPro_descricao(),
                     "" + t.getPro_valorcompra(),
                     "" + t.getPro_valorvenda(),
-                    "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                    "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                     "" + t.getMar_codigo().getMar_descricao(),
                     "" + t.getCat_codigo().getCat_descricao(),
                     "" + t.getTpp_codigo().getTpp_descricao(),
@@ -121,12 +123,13 @@ public class frmLProdutos extends javax.swing.JFrame {
         dados.setNumRows(0);
 
         daoProdutos.findAll().stream().forEach((t) -> {
+            DecimalFormat df = new DecimalFormat("#,###.00");
             dados.addRow(new String[]{
                 "" + t.getPro_codigo(),
                 "" + t.getPro_descricao(),
                 "" + t.getPro_valorcompra(),
                 "" + t.getPro_valorvenda(),
-                "" + (t.getPro_valorvenda() - t.getPro_valorcompra()),
+                "" + df.format(t.getPro_valorvenda() - t.getPro_valorcompra()),
                 "" + t.getMar_codigo().getMar_descricao(),
                 "" + t.getCat_codigo().getCat_descricao(),
                 "" + t.getTpp_codigo().getTpp_descricao(),

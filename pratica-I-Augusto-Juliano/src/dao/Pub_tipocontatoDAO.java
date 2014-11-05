@@ -48,6 +48,10 @@ public class Pub_tipocontatoDAO {
     public List<Pub_tipocontato> findAll() {
         return session.createQuery("from Pub_tipocontato order by tpc_descricao").list();
     }
+    
+    public List<Pub_tipocontato> findAllActived() {
+        return session.createQuery("from Pub_tipocontato where tpc_status = true order by tpc_descricao").list();
+    }
 
     public List<Pub_tipocontato> findDesc(String _tpc_descricao) {
         return session.createQuery("from Pub_tipocontato where tpc_descricao like '%" + _tpc_descricao + "%' order by tpc_descricao").list();
