@@ -5,7 +5,11 @@
  */
 package view;
 
+import dao.Pub_cidadeDAO;
+import dao.Pub_estadoDAO;
+import dao.Pub_pessoaDAO;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -13,9 +17,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 import model.Pub_cidade;
+import model.Pub_estado;
+import model.Pub_pessoa;
 import model.Pub_pessoacontatos;
 import model.Pub_tipocontato;
-import dao.Pub_cidadeDAO;
 
 /**
  *
@@ -24,6 +29,9 @@ import dao.Pub_cidadeDAO;
 public class frmMPessoas extends javax.swing.JFrame {
 
     private Pub_cidadeDAO daoCidade = new Pub_cidadeDAO();
+    private Pub_pessoaDAO daoPessoa = new Pub_pessoaDAO();
+    private Pub_pessoa pub_pessoa = new Pub_pessoa();
+    private int pes_codigo = 0;
 
     public frmMPessoas(Integer _pes_codigo) {
         initComponents();
@@ -249,7 +257,6 @@ public class frmMPessoas extends javax.swing.JFrame {
 
         jLabel12.setText("CONTATOS DA PESSOA");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\save.png")); // NOI18N
         jButton2.setText("SALVAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +264,6 @@ public class frmMPessoas extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\cancel.png")); // NOI18N
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +271,6 @@ public class frmMPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnAdd.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\add.png")); // NOI18N
         btnAdd.setText("Adicionar");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,7 +278,6 @@ public class frmMPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\1414636919_1-16.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +285,6 @@ public class frmMPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnDel.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\delete.png")); // NOI18N
         btnDel.setText("Deletar");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,7 +477,54 @@ public class frmMPessoas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtComplementoKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            if (formValidation()) {
+                if (pes_codigo == 0) { //inserção
+                    pub_pessoa = new Pub_pessoa();
+                    pub_pessoa.setPes_razaosocial(txtRazaoSocial.getText().toUpperCase());
+                    pub_pessoa.setPes_nomefantasia(txtNomeFantasia.getText().toUpperCase());
+                    pub_pessoa.setPes_tipopessoa(cboTipoPessoa.getSelectedItem().toString().substring(0, 1).toUpperCase());
+                    pub_pessoa.setPes_cnpjcpf(txtCNPJCPF.getText().toUpperCase());
+                    pub_pessoa.setPes_tipo(cboCategoriaPessoa.getSelectedItem().toString().substring(0, 1).toUpperCase());
+                    if (radAtivo.isSelected()) {
+                        pub_pessoa.setPes_status(true);
+                    } else {
+                        pub_pessoa.setPes_status(false);
+                    }
+                    pub_pessoa.setCid_codigo((Pub_cidade) cboCidade.getSelectedItem());
+                    pub_pessoa.setPes_bairro(txtBairro.getText().toUpperCase());
+                    pub_pessoa.setPes_logradouro(txtLogradouro.getText().toUpperCase());
+                    pub_pessoa.setPes_numero(Integer.parseInt(txtNumero.getText()));
+                    pub_pessoa.setPes_complemento(txtComplemento.getText().toUpperCase());
 
+                    pub_pessoa.setPsc_codigo(new ArrayList<Pub_pessoacontatos>());
+                    for (int i = 0; i < gridContatos.getRowCount(); i++) {
+                        Pub_pessoacontatos pub_pessoacontatos = new Pub_pessoacontatos();
+                        Pub_tipocontato pub_tipocontato = new Pub_tipocontato();
+
+                        pub_tipocontato.setTpc_codigo(Integer.parseInt(gridContatos.getValueAt(i, 1).toString()));
+                        pub_pessoacontatos.setTpc_codigo(pub_tipocontato);
+                        pub_pessoacontatos.setPsc_contato("" + gridContatos.getValueAt(i, 3));
+                        pub_pessoacontatos.setPsc_codigo(Integer.parseInt(gridContatos.getValueAt(i, 0).toString()));
+                        pub_pessoacontatos.setPes_codigo(pub_pessoa);
+
+                        pub_pessoa.getPsc_codigo().add(pub_pessoacontatos);
+                    }
+
+
+                    daoPessoa.insert(pub_pessoa);
+                } else { //edição
+                    /*pub_estado.setEst_descricao(txtDesc.getText().toUpperCase());
+                     pub_estado.setEst_sigla(txtSigla.getText().toUpperCase().substring(0, 2));
+                     daoEstados.update(pub_estado);*/
+                }
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+
+                this.dispose();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro, o registro não foi salvo!", "Alerta", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -590,6 +640,21 @@ public class frmMPessoas extends javax.swing.JFrame {
                 new frmMPessoas(null).setVisible(true);
             }
         });
+    }
+
+    private Boolean formValidation() {
+        String finalMessage = "Preencha corretamente os campos obrigatórios: \n";
+        String message = "";
+        if (txtRazaoSocial.getText().isEmpty()) {
+            message += " * Razão Social \n";
+        }
+        if (message != "") {
+            finalMessage += message;
+            JOptionPane.showMessageDialog(null, finalMessage, "Alerta", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

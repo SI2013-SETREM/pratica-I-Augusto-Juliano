@@ -7,6 +7,7 @@ package model;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,8 +46,16 @@ public class Pub_pessoa {
     private String pes_bairro;
     private String pes_tipopessoa;
     private String pes_nivelacesso;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pub_pessoacontatos> psc_codigo;
+
+    public List<Pub_pessoacontatos> getPsc_codigo() {
+        return psc_codigo;
+    }
+
+    public void setPsc_codigo(List<Pub_pessoacontatos> psc_codigo) {
+        this.psc_codigo = psc_codigo;
+    }
 
     public Pub_pessoa() {
     }

@@ -436,9 +436,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\save.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="SALVAR"/>
       </Properties>
       <Events>
@@ -447,9 +444,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\cancel.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="CANCELAR"/>
       </Properties>
       <Events>
@@ -458,9 +452,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\add.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Adicionar"/>
       </Properties>
       <Events>
@@ -469,9 +460,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEdit">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\1414636919_1-16.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
@@ -480,9 +468,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnDel">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\delete.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Deletar"/>
       </Properties>
       <Events>
