@@ -35,7 +35,7 @@ public class Fin_categoriamovimentacaoDAO {
         session.merge(_fin_categoriamovimentacao);
         t.commit();
     }
-    
+
     public void delete(Fin_categoriamovimentacao _fin_categoriamovimentacao) {
         Transaction t = session.beginTransaction();
         session.delete(_fin_categoriamovimentacao);
@@ -47,6 +47,10 @@ public class Fin_categoriamovimentacaoDAO {
     }
 
     public List<Fin_categoriamovimentacao> findAll() {
-        return session.createQuery("from Fin_categoriamovimentacao").list();
+        return session.createQuery("from Fin_categoriamovimentacao order by ctm_descricao").list();
+    }
+
+    public List<Fin_categoriamovimentacao> findDesc(String _ctm_descricao) {
+        return session.createQuery("from Fin_categoriamovimentacao where ctm_descricao like '%" + _ctm_descricao + "%' order by ctm_descricao").list();
     }
 }

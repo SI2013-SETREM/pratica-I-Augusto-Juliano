@@ -92,7 +92,7 @@ public class frmLTipoproduto extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        btnAdd.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\add.png")); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/add.png"))); // NOI18N
         btnAdd.setText("Adicionar");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +100,7 @@ public class frmLTipoproduto extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\1414636919_1-16.png")); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/editar.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +108,7 @@ public class frmLTipoproduto extends javax.swing.JFrame {
             }
         });
 
-        btnDel.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\delete.png")); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/delete.png"))); // NOI18N
         btnDel.setText("Deletar");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

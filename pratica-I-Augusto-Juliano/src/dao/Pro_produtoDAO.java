@@ -66,12 +66,10 @@ public class Pro_produtoDAO {
     }
 
     public List<Pro_produto> findCategoria(String _cat_descricao) {
-        return session.createQuery("from Pro_produto pro inner join Pro_categoria cat on cat.cat_codigo = pro.cat_codigo"
-                + "where cat.cat_descricao like '%" + _cat_descricao + "%' order by pro.pro_descricao asc").list();
+        return session.createQuery("from Pro_produto pro where cat_codigo.cat_descricao like '%" + _cat_descricao + "%' order by pro_descricao asc").list();
     }
 
-    public List<Pro_produto> findTipoproduto(String _cat_descricao) {
-        return session.createQuery("from Pro_produto pro inner join Pro_categoria cat on cat.cat_codigo = pro.cat_codigo"
-                + "where cat.cat_descricao like '%" + _cat_descricao + "%' order by pro.pro_descricao asc").list();
+    public List<Pro_produto> findTipoProduto(String _tpp_codigo) {
+        return session.createQuery("from Pro_produto pro where tpp_codigo.tpp_descricao like '%" + _tpp_codigo + "%' order by pro_descricao asc").list();
     }
 }

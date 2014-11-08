@@ -16,15 +16,47 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\cadastros.png"/>
+              <Image iconType="3" name="/view/cadastros.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastros"/>
           </Properties>
           <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jMenu6">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/view/financeiro.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Financeiro"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/view/caixas.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Caixa"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem9ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/view/categorias.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Categoria de Movimenta&#xe7;&#xe3;o"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem10ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\produto.png"/>
+                  <Image iconType="3" name="/view/produtos.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>
@@ -32,9 +64,9 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\categorias.png"/>
+                      <Image iconType="3" name="/view/categorias.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Categorias"/>
+                    <Property name="text" type="java.lang.String" value="Categoria de Produto"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -43,7 +75,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\marcas.png"/>
+                      <Image iconType="3" name="/view/marcas.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Marcas"/>
                   </Properties>
@@ -54,7 +86,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\tipo de produto.png"/>
+                      <Image iconType="3" name="/view/tipo de produto.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tipo de Produto"/>
                   </Properties>
@@ -67,7 +99,7 @@
             <Menu class="javax.swing.JMenu" name="jMenu4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\publico.png"/>
+                  <Image iconType="3" name="/view/publico.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="P&#xfa;blico"/>
               </Properties>
@@ -75,7 +107,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\cidade.png"/>
+                      <Image iconType="3" name="/view/cidade.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cidades"/>
                   </Properties>
@@ -86,7 +118,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\estado.png"/>
+                      <Image iconType="3" name="/view/estado.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Estados"/>
                   </Properties>
@@ -97,7 +129,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\tipo de contato.png"/>
+                      <Image iconType="3" name="/view/tipo de contato.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tipo de Contatos"/>
                   </Properties>
@@ -112,7 +144,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\manuten&#xe7;&#xe3;o.png"/>
+              <Image iconType="3" name="/view/manuten&#xe7;&#xe3;o.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Manuten&#xe7;&#xe3;o"/>
           </Properties>
@@ -120,7 +152,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\usuario.png"/>
+                  <Image iconType="3" name="/view/usuario.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pessoas"/>
               </Properties>
@@ -131,7 +163,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\produtos.png"/>
+                  <Image iconType="3" name="/view/produto.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>

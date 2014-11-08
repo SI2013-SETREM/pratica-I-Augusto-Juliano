@@ -16,17 +16,19 @@ import javax.persistence.SequenceGenerator;
 @Entity
 @SequenceGenerator(name = "seq_par_codigo", sequenceName = "seq_par_codigo", allocationSize = 1)
 public class Fin_parcela {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_par_codigo")
     private int par_codigo;
     @ManyToOne
-    @JoinColumn(name = "cai_codigo")
-    private Fin_caixa cai_codigo;
-    @ManyToOne
     @JoinColumn(name = "rcd_codigo")
     private Fin_receitadespesa rcd_codigo;
     @ManyToOne
+    @JoinColumn(name = "par_pai")
     private Fin_parcela par_pai;
+    @ManyToOne
+    @JoinColumn(name = "afc_codigo")
+    private Fin_afcaixa afc_codigo;
     private Date par_datacadastro;
     private Date par_datavencimento;
     private double par_valortotal;
@@ -46,14 +48,14 @@ public class Fin_parcela {
         this.par_codigo = par_codigo;
     }
 
-    public Fin_caixa getCai_codigo() {
-        return cai_codigo;
+    public Fin_afcaixa getAfc_codigo() {
+        return afc_codigo;
     }
 
-    public void setCai_codigo(Fin_caixa cai_codigo) {
-        this.cai_codigo = cai_codigo;
+    public void setAfc_codigo(Fin_afcaixa afc_codigo) {
+        this.afc_codigo = afc_codigo;
     }
-
+    
     public Fin_receitadespesa getRcd_codigo() {
         return rcd_codigo;
     }

@@ -42,7 +42,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="chckContinue" min="-2" pref="184" max="-2" attributes="0"/>
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -123,7 +123,7 @@
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\save.png"/>
+          <Image iconType="3" name="/view/save.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="SALVAR"/>
       </Properties>
@@ -134,7 +134,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\juliano\Documents\NetBeansProjects\pratica-I-Augusto-Juliano\trunk\pratica-I-Augusto-Juliano\src\image\cancel.png"/>
+          <Image iconType="3" name="/view/cancel.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="CANCELAR"/>
       </Properties>
@@ -153,6 +153,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cboEstadoKeyPressed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

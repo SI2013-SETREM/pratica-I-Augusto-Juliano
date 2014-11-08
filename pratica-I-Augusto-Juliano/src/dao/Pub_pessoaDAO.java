@@ -11,6 +11,7 @@ import util.HibernateUtil;
  * @author juliano
  */
 public class Pub_pessoaDAO {
+
     private Session session;
 
     public Pub_pessoaDAO() {
@@ -39,7 +40,11 @@ public class Pub_pessoaDAO {
         return (Pub_pessoa) session.load(Pub_pessoa.class, id);
     }
 
-    public List<Pub_pessoa> findAll() {
-        return session.createQuery("from Pub_pessoa").list();
+    public List<Pub_pessoa> findAllByCat(String _pes_tipo) {
+        if ("T".equals(_pes_tipo)) {
+            return session.createQuery("from Pub_pessoa").list();
+        } else {
+            return session.createQuery("from Pub_pessoa where pes_tipo = '" + _pes_tipo + "' order by pes_razaosocial").list();
+        }
     }
 }

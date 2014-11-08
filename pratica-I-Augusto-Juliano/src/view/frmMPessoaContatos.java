@@ -6,9 +6,11 @@
 package view;
 
 import dao.Pub_tipocontatoDAO;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import model.Pub_pessoacontatos;
 import model.Pub_tipocontato;
 
@@ -55,6 +57,24 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
         }
     }
 
+    private Boolean formValidation() {
+        String finalMessage = "Preencha corretamente os campos obrigatórios: \n";
+        String message = "";
+        if (cboTipoContato.getSelectedIndex() == -1) {
+            message += " * Tipo de Contato \n";
+        }
+        if (txtContato.getText().isEmpty()) {
+            message += " * Contato \n";
+        }
+        if (!"".equals(message)) {
+            finalMessage += message;
+            JOptionPane.showMessageDialog(null, finalMessage, "Alerta", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -72,6 +92,11 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
         cboTipoContato.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboTipoContatoItemStateChanged(evt);
+            }
+        });
+        cboTipoContato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboTipoContatoKeyPressed(evt);
             }
         });
 
@@ -92,7 +117,7 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\save.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/save.png"))); // NOI18N
         jButton2.setText("SALVAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +125,7 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\cancel.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cancel.png"))); // NOI18N
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +144,7 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 234, Short.MAX_VALUE)
+                        .addGap(0, 194, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
@@ -147,7 +172,7 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,18 +191,26 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtContatoKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        _psc_codigo = new Pub_pessoacontatos();
-        _psc_codigo.setPes_codigo(null);
-        _psc_codigo.setPsc_codigo(0);
-        _psc_codigo.setPsc_contato(txtContato.getText());
-        _psc_codigo.setTpc_codigo((Pub_tipocontato) cboTipoContato.getSelectedItem());
-        this.dispose();
+        if (formValidation()) {
+            _psc_codigo = new Pub_pessoacontatos();
+            _psc_codigo.setPes_codigo(null);
+            _psc_codigo.setPsc_codigo(0);
+            _psc_codigo.setPsc_contato(txtContato.getText());
+            _psc_codigo.setTpc_codigo((Pub_tipocontato) cboTipoContato.getSelectedItem());
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         _psc_codigo = null;
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cboTipoContatoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboTipoContatoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            cboTipoContato.setSelectedItem(null);
+        }
+    }//GEN-LAST:event_cboTipoContatoKeyPressed
 
     /**
      * @param args the command line arguments

@@ -46,7 +46,7 @@ public class Pub_pessoa {
     private String pes_bairro;
     private String pes_tipopessoa;
     private String pes_nivelacesso;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "psc_codigo")
     private List<Pub_pessoacontatos> psc_codigo;
 
     public List<Pub_pessoacontatos> getPsc_codigo() {

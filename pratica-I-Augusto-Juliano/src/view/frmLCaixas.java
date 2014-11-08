@@ -5,28 +5,44 @@
  */
 package view;
 
-import dao.Pro_marcasDAO;
+import dao.Fin_caixaDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Pro_marcas;
+import model.Fin_caixa;
 
 /**
  *
  * @author juliano
  */
-public class frmLMarcas extends javax.swing.JFrame {
+public class frmLCaixas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmLMarcas
-     */
-    public frmLMarcas() {
+    private Fin_caixaDAO daoCaixa = new Fin_caixaDAO();
+    private Fin_caixa fin_caixa = new Fin_caixa();
+
+    public frmLCaixas() {
         initComponents();
     }
 
-    private int operation = 0;
-    private Pro_marcasDAO daoMarcas = new Pro_marcasDAO();
-    private Pro_marcas pro_marcas = new Pro_marcas();
-    private int cat_codigo;
+    public void refreshGrid() {
+        txtPesquisa.setText("");
+        daoCaixa = new Fin_caixaDAO();
+        DefaultTableModel dados = (DefaultTableModel) jTable.getModel();
+        dados.setNumRows(0);
+
+        daoCaixa.findAll().stream().forEach((t) -> {
+            dados.addRow(new String[]{"" + t.getCai_codigo(), t.getCai_descricao(), "" + t.getCai_valorinicial()});
+        });
+    }
+
+    public void filterGrid(String _mar_descricao) {
+        daoCaixa = new Fin_caixaDAO();
+        DefaultTableModel dados = (DefaultTableModel) jTable.getModel();
+        dados.setNumRows(0);
+
+        daoCaixa.findDesc(_mar_descricao).stream().forEach((t) -> {
+            dados.addRow(new String[]{"" + t.getCai_codigo(), "" + t.getCai_descricao(), "" + t.getCai_valorinicial()});
+        });
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,12 +53,12 @@ public class frmLMarcas extends javax.swing.JFrame {
         btnEdit = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
         txtPesquisa = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listagem de Marcas");
+        setTitle("Listagem de Caixas");
         setExtendedState(MAXIMIZED_BOTH);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -92,7 +108,7 @@ public class frmLMarcas extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Pesquisar por Descrição");
+        jLabel2.setText("Pesquisar por Descrição");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -106,10 +122,10 @@ public class frmLMarcas extends javax.swing.JFrame {
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 583, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 538, Short.MAX_VALUE)
                         .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -117,7 +133,7 @@ public class frmLMarcas extends javax.swing.JFrame {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -128,22 +144,22 @@ public class frmLMarcas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "mar_codigo", "Descrição"
+                "cai_codigo", "Descrição", "Valor Inicial (R$)"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -154,13 +170,12 @@ public class frmLMarcas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setName("jTableDados"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable.setName("jTableDados"); // NOI18N
+        jScrollPane2.setViewportView(jTable);
+        if (jTable.getColumnModel().getColumnCount() > 0) {
+            jTable.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTable.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,69 +183,62 @@ public class frmLMarcas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void filterGrid(String _mar_descricao) {
-        daoMarcas = new Pro_marcasDAO();
-        DefaultTableModel dados = (DefaultTableModel) jTable1.getModel();
-        dados.setNumRows(0);
-
-        daoMarcas.findDesc(_mar_descricao).stream().forEach((t) -> {
-            dados.addRow(new String[]{"" + t.getMar_codigo(), t.getMar_descricao()});
-        });
-    }
-
-    public void refreshGrid() {
-        txtPesquisa.setText("");
-        daoMarcas = new Pro_marcasDAO();
-        DefaultTableModel dados = (DefaultTableModel) jTable1.getModel();
-        dados.setNumRows(0);
-
-        daoMarcas.findAll().stream().forEach((t) -> {
-            dados.addRow(new String[]{"" + t.getMar_codigo(), t.getMar_descricao()});
-        });
-    }
-
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        frmMMarcas frm = new frmMMarcas(0);
+        frmMCaixa frm = new frmMCaixa(0);
         frm.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int _linha = jTable1.getSelectedRow();
+        int _linha = jTable.getSelectedRow();
         if (_linha > -1) {
-            int _mar_codigo = Integer.parseInt((String) jTable1.getValueAt(_linha, 0));
-            frmMMarcas frm = new frmMMarcas(_mar_codigo);
-            frm.setVisible(true);
+            int _cai_codigo = Integer.parseInt((String) jTable.getValueAt(_linha, 0));
+            Boolean _opened = daoCaixa.verifyOutflows(_cai_codigo);
+            if (!_opened) {
+                frmMCaixa frm = new frmMCaixa(_cai_codigo);
+                frm.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Este caixa já foi aberto e não pode ser modificado!", "Alerta", JOptionPane.WARNING_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
-        int _linha = jTable1.getSelectedRow();
+        int _linha = jTable.getSelectedRow();
         if (_linha > -1) {
             Integer operacao = JOptionPane.showConfirmDialog(null, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
             if (operacao == JOptionPane.YES_OPTION) {
-                int _mar_codigo = Integer.parseInt((String) jTable1.getValueAt(_linha, 0));
-                pro_marcas = daoMarcas.findById(_mar_codigo);
-                daoMarcas.delete(pro_marcas);
+                int _cai_codigo = Integer.parseInt((String) jTable.getValueAt(_linha, 0));
+                Boolean _opened = daoCaixa.verifyOutflows(_cai_codigo);
+                if (!_opened) {
+                    fin_caixa = daoCaixa.findById(_cai_codigo);
+                    daoCaixa.delete(fin_caixa);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Este caixa já foi aberto e não pode ser modificado!", "Alerta", JOptionPane.WARNING_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnDelActionPerformed
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
         if (txtPesquisa.getText().length() > 0) {
@@ -247,10 +255,6 @@ public class frmLMarcas extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         refreshGrid();
     }//GEN-LAST:event_formWindowOpened
-
-    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,20 +273,20 @@ public class frmLMarcas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmLMarcas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmLCaixas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmLMarcas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmLCaixas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmLMarcas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmLCaixas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmLMarcas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmLCaixas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmLMarcas().setVisible(true);
+                new frmLCaixas().setVisible(true);
             }
         });
     }
@@ -291,9 +295,9 @@ public class frmLMarcas extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable;
     private java.awt.Panel panel1;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables

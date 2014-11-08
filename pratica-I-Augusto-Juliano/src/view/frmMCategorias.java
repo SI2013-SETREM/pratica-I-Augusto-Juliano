@@ -15,9 +15,9 @@ import model.Pro_categoria;
  */
 public class frmMCategorias extends javax.swing.JFrame {
 
-    private Pro_categoriaDAO daoCategoria = new Pro_categoriaDAO();
-    private Pro_categoria pro_categoria = new Pro_categoria();
-    private int cat_codigo = 0;
+private Pro_categoriaDAO daoCategoria = new Pro_categoriaDAO();
+private Pro_categoria pro_categoria = new Pro_categoria();
+private int cat_codigo = 0;
 
     public frmMCategorias(Integer _cat_codigo) {
         cat_codigo = _cat_codigo;
@@ -80,7 +80,7 @@ public class frmMCategorias extends javax.swing.JFrame {
 
         jLabel1.setText("DESCRIÇÃO");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\save.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/save.png"))); // NOI18N
         jButton2.setText("SALVAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +88,7 @@ public class frmMCategorias extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\cancel.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cancel.png"))); // NOI18N
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

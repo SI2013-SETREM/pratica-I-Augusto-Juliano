@@ -9,6 +9,7 @@ import dao.Pro_categoriaDAO;
 import dao.Pro_marcasDAO;
 import dao.Pro_produtoDAO;
 import dao.Pro_tipoprodutoDAO;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -133,7 +134,7 @@ public class frmMProdutos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Manutenção de Produtos");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\save.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/save.png"))); // NOI18N
         jButton2.setText("SALVAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +142,7 @@ public class frmMProdutos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\cancel.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cancel.png"))); // NOI18N
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +157,11 @@ public class frmMProdutos extends javax.swing.JFrame {
         cboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboCategoriaActionPerformed(evt);
+            }
+        });
+        cboCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboCategoriaKeyPressed(evt);
             }
         });
 
@@ -179,7 +185,19 @@ public class frmMProdutos extends javax.swing.JFrame {
             }
         });
 
+        cboTipoproduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboTipoprodutoKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("TIP. PROD.");
+
+        cboMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboMarcaKeyPressed(evt);
+            }
+        });
 
         jLabel5.setText("MARCA");
 
@@ -323,6 +341,24 @@ public class frmMProdutos extends javax.swing.JFrame {
     private void txtValorVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorVendaKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorVendaKeyPressed
+
+    private void cboCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCategoriaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            cboCategoria.setSelectedItem(null);
+        }
+    }//GEN-LAST:event_cboCategoriaKeyPressed
+
+    private void cboTipoprodutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboTipoprodutoKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            cboTipoproduto.setSelectedItem(null);
+        }
+    }//GEN-LAST:event_cboTipoprodutoKeyPressed
+
+    private void cboMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMarcaKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            cboMarca.setSelectedItem(null);
+        }
+    }//GEN-LAST:event_cboMarcaKeyPressed
 
     /**
      * @param args the command line arguments

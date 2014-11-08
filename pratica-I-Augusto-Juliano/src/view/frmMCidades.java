@@ -7,6 +7,7 @@ package view;
 
 import dao.Pub_cidadeDAO;
 import dao.Pub_estadoDAO;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -62,7 +63,7 @@ public class frmMCidades extends javax.swing.JFrame {
             } else {
                 String cep_inicio = _cep.substring(0, 5) + "-";
                 String cep_fim = _cep.substring(5, 8);
-                return  cep_inicio + cep_fim;
+                return cep_inicio + cep_fim;
             }
         } else if (_cep.length() == 9) {
             if (_cep.replace("-", "").length() == 8) {
@@ -140,7 +141,7 @@ public class frmMCidades extends javax.swing.JFrame {
 
         jLabel1.setText("DESCRIÇÃO");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\save.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/save.png"))); // NOI18N
         jButton2.setText("SALVAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +149,7 @@ public class frmMCidades extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\juliano\\Documents\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\image\\cancel.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cancel.png"))); // NOI18N
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +158,12 @@ public class frmMCidades extends javax.swing.JFrame {
         });
 
         jLabel3.setText("ESTADO");
+
+        cboEstado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboEstadoKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,7 +184,7 @@ public class frmMCidades extends javax.swing.JFrame {
                             .addComponent(cboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(chckContinue, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
@@ -253,6 +260,12 @@ public class frmMCidades extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboEstadoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            cboEstado.setSelectedItem(null);
+        }
+    }//GEN-LAST:event_cboEstadoKeyPressed
 
     /**
      * @param args the command line arguments

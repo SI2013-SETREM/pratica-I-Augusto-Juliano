@@ -8,6 +8,7 @@ package view;
 import dao.Pub_cidadeDAO;
 import dao.Pub_estadoDAO;
 import dao.Pub_pessoaDAO;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,6 +176,12 @@ public class frmMPessoas extends javax.swing.JFrame {
 
         jLabel7.setText("STATUS");
 
+        cboCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboCidadeKeyPressed(evt);
+            }
+        });
+
         jLabel8.setText("CIDADE");
         jLabel8.setToolTipText("");
 
@@ -257,6 +264,7 @@ public class frmMPessoas extends javax.swing.JFrame {
 
         jLabel12.setText("CONTATOS DA PESSOA");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/save.png"))); // NOI18N
         jButton2.setText("SALVAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,6 +272,7 @@ public class frmMPessoas extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cancel.png"))); // NOI18N
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +422,7 @@ public class frmMPessoas extends javax.swing.JFrame {
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -606,6 +615,12 @@ public class frmMPessoas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnDelActionPerformed
+
+    private void cboCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCidadeKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            cboCidade.setSelectedItem(null);
+        }
+    }//GEN-LAST:event_cboCidadeKeyPressed
 
     /**
      * @param args the command line arguments
