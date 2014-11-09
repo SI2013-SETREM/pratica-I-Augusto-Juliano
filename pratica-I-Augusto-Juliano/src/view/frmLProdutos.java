@@ -7,9 +7,18 @@ package view;
 
 import dao.Pro_produtoDAO;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pro_produto;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -155,6 +164,7 @@ public class frmLProdutos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListFilter = new javax.swing.JList();
+        btnPrint = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -179,7 +189,7 @@ public class frmLProdutos extends javax.swing.JFrame {
             }
         });
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/add.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnAdd.setText("Adicionar");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +197,7 @@ public class frmLProdutos extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/editar.png"))); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +205,7 @@ public class frmLProdutos extends javax.swing.JFrame {
             }
         });
 
-        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/delete.png"))); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnDel.setText("Deletar");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +222,9 @@ public class frmLProdutos extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPesquisaKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyTyped(evt);
+            }
         });
 
         jLabel1.setText("Selecione o Tipo de Filtro");
@@ -222,6 +235,14 @@ public class frmLProdutos extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jListFilter);
+
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imprimir2.png"))); // NOI18N
+        btnPrint.setText("Imprimir");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -237,9 +258,11 @@ public class frmLProdutos extends javax.swing.JFrame {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                         .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtPesquisa))
                 .addContainerGap())
@@ -258,7 +281,8 @@ public class frmLProdutos extends javax.swing.JFrame {
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnEdit)
-                            .addComponent(btnDel))))
+                            .addComponent(btnDel)
+                            .addComponent(btnPrint))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -361,11 +385,11 @@ public class frmLProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
-        if (txtPesquisa.getText().length() > 0) {
+        /*if (txtPesquisa.getText().length() > 0) {
             filterGrid(txtPesquisa.getText().toUpperCase());
         } else {
             refreshGrid();
-        }
+        }*/
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
@@ -381,6 +405,53 @@ public class frmLProdutos extends javax.swing.JFrame {
         jListFilter.setSelectedIndex(0);
         refreshGrid();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        String _filtro = txtPesquisa.getText().toUpperCase();
+        List<Pro_produto> lstPro_produto = new ArrayList<Pro_produto>();
+        switch (jListFilter.getSelectedIndex()) {
+            case 0:
+                lstPro_produto = daoProdutos.findDesc(_filtro);
+                break;
+            case 1:
+                lstPro_produto = daoProdutos.findValorCompra(_filtro);
+                break;
+            case 2:
+                lstPro_produto = daoProdutos.findValorVenda(_filtro);
+                break;
+            case 3:
+                lstPro_produto = daoProdutos.findMarca(_filtro);
+                break;
+            case 4:
+                lstPro_produto = daoProdutos.findCategoria(_filtro);
+                break;
+            case 5:
+                lstPro_produto = daoProdutos.findTipoProduto(_filtro);
+                break;
+            default: {
+                JOptionPane.showMessageDialog(null, "Informe o tipo de filtro a ser feito!", "Alerta", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        
+        JRBeanCollectionDataSource dsourse = new JRBeanCollectionDataSource(lstPro_produto);
+        Map parametros = new HashMap();
+
+        try {
+            JasperPrint jpr = JasperFillManager.fillReport("reports/rptProdutos.jasper", parametros, dsourse);
+            JasperViewer.viewReport(jpr, false);
+
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void txtPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyTyped
+        if (txtPesquisa.getText().length() > 0) {
+            filterGrid(txtPesquisa.getText().toUpperCase());
+        } else {
+            refreshGrid();
+        }
+    }//GEN-LAST:event_txtPesquisaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -421,6 +492,7 @@ public class frmLProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnPrint;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;

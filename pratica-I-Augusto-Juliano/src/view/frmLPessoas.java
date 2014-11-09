@@ -94,7 +94,7 @@ public class frmLPessoas extends javax.swing.JFrame {
         cboTppPessoa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CLIENTE", "COLABORADOR", "FORNECEDOR", "GERAL", "TODOS" }));
         cboTppPessoa.setToolTipText("");
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/add.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnAdd.setText("Adicionar");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/editar.png"))); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +110,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/delete.png"))); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnDel.setText("Deletar");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class frmLPessoas extends javax.swing.JFrame {
 
         jLabel3.setText("-->");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/question.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
         jButton1.setPreferredSize(new java.awt.Dimension(22, 22));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +339,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             gridPessoas.getColumnModel().getColumn(11).setMaxWidth(110);
         }
 
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/add.png"))); // NOI18N
+        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnAdd1.setText("Adicionar");
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,7 +347,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/editar.png"))); // NOI18N
+        btnEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEdit1.setText("Editar");
         btnEdit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,7 +355,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnDel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/delete.png"))); // NOI18N
+        btnDel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnDel1.setText("Deletar");
         btnDel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

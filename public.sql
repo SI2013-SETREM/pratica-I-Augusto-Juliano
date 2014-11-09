@@ -183,7 +183,7 @@ CREATE SEQUENCE "public"."seq_tpp_codigo"
 -- ----------------------------
 -- Table structure for "public"."fin_afcaixa"
 -- ----------------------------
-DROP TABLE "public"."fin_afcaixa";
+DROP TABLE "public"."fin_afcaixa" CASCADE;
 CREATE TABLE "public"."fin_afcaixa" (
 "afc_codigo" int4 NOT NULL,
 "afc_dataabertura" timestamp(6),
@@ -203,7 +203,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."fin_caixa"
 -- ----------------------------
-DROP TABLE "public"."fin_caixa";
+DROP TABLE "public"."fin_caixa" CASCADE;
 CREATE TABLE "public"."fin_caixa" (
 "cai_codigo" int4 NOT NULL,
 "cai_descricao" varchar(255),
@@ -220,7 +220,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."fin_categoriamovimentacao"
 -- ----------------------------
-DROP TABLE "public"."fin_categoriamovimentacao";
+DROP TABLE "public"."fin_categoriamovimentacao" CASCADE;
 CREATE TABLE "public"."fin_categoriamovimentacao" (
 "ctm_codigo" int4 NOT NULL,
 "ctm_descricao" varchar(255),
@@ -237,7 +237,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."fin_movimentacaoprodutos"
 -- ----------------------------
-DROP TABLE "public"."fin_movimentacaoprodutos";
+DROP TABLE "public"."fin_movimentacaoprodutos" CASCADE;
 CREATE TABLE "public"."fin_movimentacaoprodutos" (
 "pro_desconto" float8 NOT NULL,
 "pro_quantidade" float8 NOT NULL,
@@ -258,7 +258,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."fin_parcela"
 -- ----------------------------
-DROP TABLE "public"."fin_parcela";
+DROP TABLE "public"."fin_parcela" CASCADE;
 CREATE TABLE "public"."fin_parcela" (
 "par_codigo" int4 NOT NULL,
 "par_datacadastro" timestamp(6),
@@ -283,7 +283,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."fin_receitadespesa"
 -- ----------------------------
-DROP TABLE "public"."fin_receitadespesa";
+DROP TABLE "public"."fin_receitadespesa" CASCADE;
 CREATE TABLE "public"."fin_receitadespesa" (
 "rcd_codigo" int4 NOT NULL,
 "rcd_datacadastro" timestamp(6),
@@ -308,7 +308,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."pro_categoria"
 -- ----------------------------
-DROP TABLE "public"."pro_categoria";
+DROP TABLE "public"."pro_categoria" CASCADE;
 CREATE TABLE "public"."pro_categoria" (
 "cat_codigo" int4 NOT NULL,
 "cat_descricao" varchar(255)
@@ -330,7 +330,7 @@ INSERT INTO "public"."pro_categoria" VALUES ('6', 'BEBIDAS SEM ALCOOL');
 -- ----------------------------
 -- Table structure for "public"."pro_marcas"
 -- ----------------------------
-DROP TABLE "public"."pro_marcas";
+DROP TABLE "public"."pro_marcas" CASCADE;
 CREATE TABLE "public"."pro_marcas" (
 "mar_codigo" int4 NOT NULL,
 "mar_descricao" varchar(255)
@@ -348,7 +348,7 @@ INSERT INTO "public"."pro_marcas" VALUES ('6', 'CLEAR');
 -- ----------------------------
 -- Table structure for "public"."pro_produto"
 -- ----------------------------
-DROP TABLE "public"."pro_produto";
+DROP TABLE "public"."pro_produto" CASCADE;
 CREATE TABLE "public"."pro_produto" (
 "pro_codigo" int4 NOT NULL,
 "pro_datacadastro" timestamp(6),
@@ -374,7 +374,7 @@ INSERT INTO "public"."pro_produto" VALUES ('4', '2014-10-31 11:37:00.95', 'SECAD
 -- ----------------------------
 -- Table structure for "public"."pro_tipoproduto"
 -- ----------------------------
-DROP TABLE "public"."pro_tipoproduto";
+DROP TABLE "public"."pro_tipoproduto" CASCADE;
 CREATE TABLE "public"."pro_tipoproduto" (
 "tpp_codigo" int4 NOT NULL,
 "tpp_descricao" varchar(255)
@@ -417,7 +417,7 @@ INSERT INTO "public"."pro_tipoproduto" VALUES ('30', 'ÁGUA MINERAL');
 -- ----------------------------
 -- Table structure for "public"."pub_cidade"
 -- ----------------------------
-DROP TABLE "public"."pub_cidade";
+DROP TABLE "public"."pub_cidade" CASCADE;
 CREATE TABLE "public"."pub_cidade" (
 "cid_codigo" int4 NOT NULL,
 "cid_cep" varchar(255),
@@ -439,7 +439,7 @@ INSERT INTO "public"."pub_cidade" VALUES ('8', '95147-000', 'TRES PASSOS', '8');
 -- ----------------------------
 -- Table structure for "public"."pub_estado"
 -- ----------------------------
-DROP TABLE "public"."pub_estado";
+DROP TABLE "public"."pub_estado" CASCADE;
 CREATE TABLE "public"."pub_estado" (
 "est_codigo" int4 NOT NULL,
 "est_descricao" varchar(255),
@@ -464,7 +464,7 @@ INSERT INTO "public"."pub_estado" VALUES ('9', 'MINAS GERAIS', 'MG');
 -- ----------------------------
 -- Table structure for "public"."pub_log"
 -- ----------------------------
-DROP TABLE "public"."pub_log";
+DROP TABLE "public"."pub_log" CASCADE;
 CREATE TABLE "public"."pub_log" (
 "log_codigo" int4 NOT NULL,
 "log_acao" varchar(255),
@@ -485,7 +485,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."pub_pessoa"
 -- ----------------------------
-DROP TABLE "public"."pub_pessoa";
+DROP TABLE "public"."pub_pessoa" CASCADE;
 CREATE TABLE "public"."pub_pessoa" (
 "pes_codigo" int4 NOT NULL,
 "pes_bairro" varchar(255),
@@ -516,7 +516,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."pub_pessoacontatos"
 -- ----------------------------
-DROP TABLE "public"."pub_pessoacontatos";
+DROP TABLE "public"."pub_pessoacontatos" CASCADE;
 CREATE TABLE "public"."pub_pessoacontatos" (
 "psc_codigo" int4 NOT NULL,
 "psc_contato" varchar(255),
@@ -534,7 +534,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for "public"."pub_tipocontato"
 -- ----------------------------
-DROP TABLE "public"."pub_tipocontato";
+DROP TABLE "public"."pub_tipocontato" CASCADE;
 CREATE TABLE "public"."pub_tipocontato" (
 "tpc_codigo" int4 NOT NULL,
 "tpc_descricao" varchar(255),

@@ -8,7 +8,6 @@ package view;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,7 +20,7 @@ public class frmMenu extends javax.swing.JFrame {
      */
     public frmMenu() {
         initComponents();
-        URL url = this.getClass().getResource("logo.png");
+        URL url = this.getClass().getResource("../images/logo.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
@@ -59,13 +58,13 @@ public class frmMenu extends javax.swing.JFrame {
         setTitle("Menu - Controle Financeiro");
         setExtendedState(MAXIMIZED_BOTH);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cadastros.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cadastros.png"))); // NOI18N
         jMenu2.setText("Cadastros");
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/financeiro.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/financeiro.png"))); // NOI18N
         jMenu6.setText("Financeiro");
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/caixas.png"))); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/caixas.png"))); // NOI18N
         jMenuItem9.setText("Caixa");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +73,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem9);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/categorias.png"))); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/categorias.png"))); // NOI18N
         jMenuItem10.setText("Categoria de Movimentação");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,10 +84,10 @@ public class frmMenu extends javax.swing.JFrame {
 
         jMenu2.add(jMenu6);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/produtos.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/produtos.png"))); // NOI18N
         jMenu3.setText("Produtos");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/categorias.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/categorias.png"))); // NOI18N
         jMenuItem1.setText("Categoria de Produto");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +96,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/marcas.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/marcas.png"))); // NOI18N
         jMenuItem2.setText("Marcas");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +105,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/tipo de produto.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tipo de produto.png"))); // NOI18N
         jMenuItem3.setText("Tipo de Produto");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,10 +116,10 @@ public class frmMenu extends javax.swing.JFrame {
 
         jMenu2.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/publico.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/publico.png"))); // NOI18N
         jMenu4.setText("Público");
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cidade.png"))); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cidade.png"))); // NOI18N
         jMenuItem5.setText("Cidades");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +128,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem5);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/estado.png"))); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estado.png"))); // NOI18N
         jMenuItem4.setText("Estados");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +137,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem4);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/tipo de contato.png"))); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tipo de contato.png"))); // NOI18N
         jMenuItem6.setText("Tipo de Contatos");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,10 +150,10 @@ public class frmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/manutenção.png"))); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/manutenção.png"))); // NOI18N
         jMenu5.setText("Manutenção");
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/usuario.png"))); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario.png"))); // NOI18N
         jMenuItem8.setText("Pessoas");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +162,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem8);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/produto.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/produto.png"))); // NOI18N
         jMenuItem7.setText("Produtos");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

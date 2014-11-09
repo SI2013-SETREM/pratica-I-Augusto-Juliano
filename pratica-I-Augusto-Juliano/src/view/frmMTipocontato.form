@@ -112,7 +112,7 @@
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/view/save.png"/>
+          <Image iconType="3" name="/images/save.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="SALVAR"/>
       </Properties>
@@ -123,7 +123,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/view/cancel.png"/>
+          <Image iconType="3" name="/images/cancel.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="CANCELAR"/>
       </Properties>
