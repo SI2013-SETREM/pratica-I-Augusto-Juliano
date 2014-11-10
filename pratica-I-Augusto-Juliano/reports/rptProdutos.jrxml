@@ -3,6 +3,7 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -22,7 +23,7 @@
 			</staticText>
 			<image onErrorType="Blank">
 				<reportElement x="20" y="20" width="67" height="50" uuid="5166aef7-a0bd-4057-b6d3-cc4ac759a94e"/>
-				<imageExpression><![CDATA["C:\\Users\\AugustoRicardo\\Documents\\MyJavaProjects\\NetBeansProjects\\pratica-I-Augusto-Juliano\\trunk\\pratica-I-Augusto-Juliano\\src\\images\\sotos.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="0" y="132" width="120" height="20" uuid="dc69457e-a909-4ee9-8f76-b12c72a087e7"/>

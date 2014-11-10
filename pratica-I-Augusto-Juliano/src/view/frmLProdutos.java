@@ -386,10 +386,10 @@ public class frmLProdutos extends javax.swing.JFrame {
 
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
         /*if (txtPesquisa.getText().length() > 0) {
-            filterGrid(txtPesquisa.getText().toUpperCase());
-        } else {
-            refreshGrid();
-        }*/
+         filterGrid(txtPesquisa.getText().toUpperCase());
+         } else {
+         refreshGrid();
+         }*/
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
@@ -432,16 +432,21 @@ public class frmLProdutos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Informe o tipo de filtro a ser feito!", "Alerta", JOptionPane.WARNING_MESSAGE);
             }
         }
-        
-        JRBeanCollectionDataSource dsourse = new JRBeanCollectionDataSource(lstPro_produto);
-        Map parametros = new HashMap();
 
-        try {
-            JasperPrint jpr = JasperFillManager.fillReport("reports/rptProdutos.jasper", parametros, dsourse);
-            JasperViewer.viewReport(jpr, false);
+        if (lstPro_produto.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não há registros para serem impressos!", "Alerta", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JRBeanCollectionDataSource dsourse = new JRBeanCollectionDataSource(lstPro_produto);
+            Map parametros = new HashMap();
+            parametros.put("foto", this.getClass().getResource("../images/logo.png"));
 
-        } catch (JRException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            try {
+                JasperPrint jpr = JasperFillManager.fillReport("reports/rptProdutos.jasper", parametros, dsourse);
+                JasperViewer.viewReport(jpr, false);
+
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
         }
     }//GEN-LAST:event_btnPrintActionPerformed
 
