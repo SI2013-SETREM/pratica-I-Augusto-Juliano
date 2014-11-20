@@ -11,6 +11,7 @@ import dao.Pub_pessoaDAO;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -36,8 +37,52 @@ public class frmMPessoas extends javax.swing.JFrame {
 
     public frmMPessoas(Integer _pes_codigo) {
         initComponents();
+        pes_codigo = _pes_codigo;
         refreshCombos();
+        refreshForm();
         setLocationRelativeTo(null);
+    }
+
+    private void refreshForm() {
+        if (pes_codigo > 0) {
+            pub_pessoa = daoPessoa.findById(pes_codigo);
+            txtRazaoSocial.setText(pub_pessoa.getPes_razaosocial());
+            txtNomeFantasia.setText(pub_pessoa.getPes_nomefantasia());
+            String _pes_tipopessoa = pub_pessoa.getPes_tipopessoa();
+            if (_pes_tipopessoa == "F") {
+                cboTipoPessoa.setSelectedIndex(0);
+            } else {
+                cboTipoPessoa.setSelectedIndex(1);
+            }
+            txtCNPJCPF.setText(pub_pessoa.getPes_cnpjcpf());
+            String _pes_tipo = pub_pessoa.getPes_tipo();
+            if (_pes_tipo == "C") {
+                cboCategoriaPessoa.setSelectedIndex(0);
+            } else if (_pes_tipo == "L") {
+                cboCategoriaPessoa.setSelectedIndex(1);
+            } else if (_pes_tipo == "F") {
+                cboCategoriaPessoa.setSelectedIndex(2);
+            } else if (_pes_tipo == "G") {
+                cboCategoriaPessoa.setSelectedIndex(3);
+            } else {
+                cboCategoriaPessoa.setSelectedIndex(4);
+            }
+            cboCidade.getModel().setSelectedItem(pub_pessoa.getCid_codigo());
+            txtBairro.setText(pub_pessoa.getPes_bairro());
+            txtLogradouro.setText(pub_pessoa.getPes_logradouro());
+            txtNumero.setText(String.valueOf(pub_pessoa.getPes_numero()));
+            txtComplemento.setText(pub_pessoa.getPes_complemento());
+            DefaultTableModel dados = (DefaultTableModel) gridContatos.getModel();
+            dados.setNumRows(0);
+            for (int i = 0; i < pub_pessoa.getPsc_codigo().size(); i++) {
+                dados.addRow(new String[]{
+                    "" + pub_pessoa.getPsc_codigo().get(i).getPsc_codigo(),
+                    "" + pub_pessoa.getPsc_codigo().get(i).getTpc_codigo().getTpc_codigo(),
+                    "" + pub_pessoa.getPsc_codigo().get(i).getTpc_codigo().getTpc_descricao(),
+                    "" + pub_pessoa.getPsc_codigo().get(i).getPsc_contato()
+                });
+            }
+        }
     }
 
     private String format(String _formato, Object objeto) {
@@ -81,9 +126,6 @@ public class frmMPessoas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cboCategoriaPessoa = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        radInativo = new javax.swing.JRadioButton();
-        radAtivo = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
         cboCidade = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         txtBairro = new javax.swing.JTextField();
@@ -154,27 +196,6 @@ public class frmMPessoas extends javax.swing.JFrame {
 
         jLabel5.setText("CATEGORIA DE PESSOAS");
         jLabel5.setToolTipText("");
-
-        radInativo.setText("INATIVO");
-        radInativo.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radInativoStateChanged(evt);
-            }
-        });
-
-        radAtivo.setText("ATIVO");
-        radAtivo.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radAtivoStateChanged(evt);
-            }
-        });
-        radAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radAtivoActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("STATUS");
 
         cboCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -337,7 +358,6 @@ public class frmMPessoas extends javax.swing.JFrame {
                                     .addComponent(txtNomeFantasia)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel6)
@@ -346,26 +366,10 @@ public class frmMPessoas extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cboCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cboCategoriaPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(radAtivo)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(radInativo)))
+                                        .addComponent(cboCategoriaPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(txtBairro)
                                     .addComponent(txtLogradouro)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
@@ -376,7 +380,18 @@ public class frmMPessoas extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cboTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCNPJCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -404,11 +419,6 @@ public class frmMPessoas extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(radAtivo)
-                    .addComponent(radInativo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -425,20 +435,24 @@ public class frmMPessoas extends javax.swing.JFrame {
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEdit)
-                    .addComponent(btnDel)
-                    .addComponent(btnAdd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(11, 11, 11))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnEdit)
+                            .addComponent(btnDel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
+                        .addContainerGap())))
         );
 
         pack();
@@ -455,22 +469,6 @@ public class frmMPessoas extends javax.swing.JFrame {
     private void txtCNPJCPFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCNPJCPFKeyPressed
 
     }//GEN-LAST:event_txtCNPJCPFKeyPressed
-
-    private void radInativoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radInativoStateChanged
-        if (radInativo.isSelected()) {
-            radAtivo.setSelected(false);
-        }
-    }//GEN-LAST:event_radInativoStateChanged
-
-    private void radAtivoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radAtivoStateChanged
-        if (radAtivo.isSelected()) {
-            radInativo.setSelected(false);
-        }
-    }//GEN-LAST:event_radAtivoStateChanged
-
-    private void radAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radAtivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radAtivoActionPerformed
 
     private void txtBairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBairroKeyPressed
         // TODO add your handling code here:
@@ -493,16 +491,13 @@ public class frmMPessoas extends javax.swing.JFrame {
             if (formValidation()) {
                 if (pes_codigo == 0) { //inserção
                     pub_pessoa = new Pub_pessoa();
+                    pub_pessoa.setPes_datacadastro(new Date());
                     pub_pessoa.setPes_razaosocial(txtRazaoSocial.getText().toUpperCase());
                     pub_pessoa.setPes_nomefantasia(txtNomeFantasia.getText().toUpperCase());
                     pub_pessoa.setPes_tipopessoa(cboTipoPessoa.getSelectedItem().toString().substring(0, 1).toUpperCase());
                     pub_pessoa.setPes_cnpjcpf(txtCNPJCPF.getText().toUpperCase());
                     pub_pessoa.setPes_tipo(cboCategoriaPessoa.getSelectedItem().toString().substring(0, 1).toUpperCase());
-                    if (radAtivo.isSelected()) {
-                        pub_pessoa.setPes_status(true);
-                    } else {
-                        pub_pessoa.setPes_status(false);
-                    }
+                    pub_pessoa.setPes_status(true);
                     pub_pessoa.setCid_codigo((Pub_cidade) cboCidade.getSelectedItem());
                     pub_pessoa.setPes_bairro(txtBairro.getText().toUpperCase());
                     pub_pessoa.setPes_logradouro(txtLogradouro.getText().toUpperCase());
@@ -522,7 +517,6 @@ public class frmMPessoas extends javax.swing.JFrame {
 
                         pub_pessoa.getPsc_codigo().add(pub_pessoacontatos);
                     }
-
 
                     daoPessoa.insert(pub_pessoa);
                 } else { //edição
@@ -620,7 +614,7 @@ public class frmMPessoas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void cboCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCidadeKeyPressed
-         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             cboCidade.setSelectedItem(null);
         }
     }//GEN-LAST:event_cboCidadeKeyPressed
@@ -639,16 +633,21 @@ public class frmMPessoas extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -665,6 +664,10 @@ public class frmMPessoas extends javax.swing.JFrame {
         String message = "";
         if (txtRazaoSocial.getText().isEmpty()) {
             message += " * Razão Social \n";
+        }
+        Integer cpf_count = daoPessoa.findCountByCPFCNPJ(pes_codigo, txtCNPJCPF.getText());
+        if (cpf_count > 0) {
+            message += " * CPF/CNPJ já existe na base de dados \n";
         }
         if (message != "") {
             finalMessage += message;
@@ -697,13 +700,10 @@ public class frmMPessoas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCNPJCPF;
-    private javax.swing.JRadioButton radAtivo;
-    private javax.swing.JRadioButton radInativo;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCNPJCPF;
     private javax.swing.JTextField txtComplemento;

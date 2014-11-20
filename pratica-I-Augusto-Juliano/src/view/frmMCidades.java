@@ -48,7 +48,7 @@ public class frmMCidades extends javax.swing.JFrame {
             pub_cidade = daoCidades.findById(cid_codigo);
             txtDesc.setText(pub_cidade.getCid_descricao());
             txtCep.setText(pub_cidade.getCid_cep());
-            cboEstado.setSelectedItem(pub_cidade.getEst_codigo());
+            cboEstado.getModel().setSelectedItem(pub_cidade.getEst_codigo());
         } else {
             cboEstado.setSelectedItem(null);
         }

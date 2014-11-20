@@ -1,13 +1,17 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -26,18 +30,30 @@ public class Fin_receitadespesa {
     @ManyToOne
     @JoinColumn(name = "pes_codigo")
     private Pub_pessoa pes_codigo;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date rcd_datacadastro;
     private double rcd_desconto;
     private double rcd_valorbruto;
     private double rcd_valorliquido;
-    private double rcd_numeronota;
+    private String rcd_numeronota;
     private String rcd_observacao;
     private boolean rcd_fixa;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date rcd_datainicio;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "rcd_codigo")
+    private List<Fin_parcela> par_codigo;
 
     public Fin_receitadespesa() {
     }
 
+    public List<Fin_parcela> getPar_codigo() {
+        return par_codigo;
+    }
+
+    public void setPar_codigo(List<Fin_parcela> par_codigo) {
+        this.par_codigo = par_codigo;
+    }
+    
     public int getRcd_codigo() {
         return rcd_codigo;
     }
@@ -94,11 +110,11 @@ public class Fin_receitadespesa {
         this.rcd_valorliquido = rcd_valorliquido;
     }
 
-    public double getRcd_numeronota() {
+    public String getRcd_numeronota() {
         return rcd_numeronota;
     }
 
-    public void setRcd_numeronota(double rcd_numeronota) {
+    public void setRcd_numeronota(String rcd_numeronota) {
         this.rcd_numeronota = rcd_numeronota;
     }
 

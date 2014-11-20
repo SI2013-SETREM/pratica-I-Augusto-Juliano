@@ -64,9 +64,9 @@ public class frmMProdutos extends javax.swing.JFrame {
             txtDesc.setText(pro_produto.getPro_descricao());
             txtValorCompra.setText(Double.toString(pro_produto.getPro_valorcompra()));
             txtValorVenda.setText(Double.toString(pro_produto.getPro_valorcompra()));
-            cboMarca.setSelectedItem(pro_produto.getMar_codigo());
-            cboCategoria.setSelectedItem(pro_produto.getCat_codigo());
-            cboTipoproduto.setSelectedItem(pro_produto.getTpp_codigo());
+            cboMarca.getModel().setSelectedItem(pro_produto.getMar_codigo());
+            cboCategoria.getModel().setSelectedItem(pro_produto.getCat_codigo());
+            cboTipoproduto.getModel().setSelectedItem(pro_produto.getTpp_codigo());
         } else {
             cboMarca.setSelectedItem(null);
             cboCategoria.setSelectedItem(null);

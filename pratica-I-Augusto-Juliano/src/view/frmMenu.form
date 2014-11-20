@@ -151,6 +151,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F2"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/usuario.png"/>
                 </Property>
@@ -162,6 +165,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F7"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/produto.png"/>
                 </Property>
@@ -170,6 +176,98 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F8"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/mm.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Movimenta&#xe7;&#xf5;es Financeiras"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem16">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F9"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/invoice.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Notas Fiscais"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem16ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu7">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/mm.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Financeiro"/>
+          </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jMenu9">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/open caixa.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Caixas"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="F5"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/open cash.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Novo Per&#xed;odo de Caixa"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem11ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="F6"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/close cash.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Encerrar Per&#xed;odo de Caixa"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F3"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/enter money.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Entrada"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F4"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/money.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Sa&#xed;da"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -203,7 +301,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="789" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="941" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">

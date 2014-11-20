@@ -67,7 +67,6 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -77,32 +76,12 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cboCidade" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="cboCategoriaPessoa" min="-2" pref="225" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="radAtivo" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="radInativo" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="cboCategoriaPessoa" min="-2" pref="225" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="txtBairro" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtLogradouro" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnAdd" min="-2" pref="141" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnEdit" min="-2" pref="141" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnDel" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -119,7 +98,20 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnAdd" min="-2" pref="141" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnEdit" min="-2" pref="141" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnDel" min="-2" pref="140" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -156,12 +148,6 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="radAtivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="radInativo" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cboCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -182,22 +168,29 @@
                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
-              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnEdit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnDel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="166" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="136" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -281,28 +274,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CATEGORIA DE PESSOAS"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="radInativo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="INATIVO"/>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radInativoStateChanged"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="radAtivo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ATIVO"/>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radAtivoStateChanged"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radAtivoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="STATUS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboCidade">

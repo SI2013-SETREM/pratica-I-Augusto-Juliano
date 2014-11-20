@@ -220,16 +220,20 @@ public class frmLCaixas extends javax.swing.JFrame {
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         int _linha = jTable.getSelectedRow();
         if (_linha > -1) {
-            Integer operacao = JOptionPane.showConfirmDialog(null, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
-            if (operacao == JOptionPane.YES_OPTION) {
-                int _cai_codigo = Integer.parseInt((String) jTable.getValueAt(_linha, 0));
-                Boolean _opened = daoCaixa.verifyOutflows(_cai_codigo);
-                if (!_opened) {
-                    fin_caixa = daoCaixa.findById(_cai_codigo);
-                    daoCaixa.delete(fin_caixa);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Este caixa já foi aberto e não pode ser modificado!", "Alerta", JOptionPane.WARNING_MESSAGE);
+            try {
+                Integer operacao = JOptionPane.showConfirmDialog(null, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (operacao == JOptionPane.YES_OPTION) {
+                    int _cai_codigo = Integer.parseInt((String) jTable.getValueAt(_linha, 0));
+                    Boolean _opened = daoCaixa.verifyOutflows(_cai_codigo);
+                    if (!_opened) {
+                        fin_caixa = daoCaixa.findById(_cai_codigo);
+                        daoCaixa.delete(fin_caixa);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Este caixa já foi aberto e não pode ser modificado!", "Alerta", JOptionPane.WARNING_MESSAGE);
+                    }
                 }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Desculpe, este registro não pode ser removido!", "Alerta", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);

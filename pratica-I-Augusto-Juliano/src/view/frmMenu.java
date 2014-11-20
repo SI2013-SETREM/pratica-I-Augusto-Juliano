@@ -51,6 +51,14 @@ public class frmMenu extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -153,6 +161,7 @@ public class frmMenu extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/manutenção.png"))); // NOI18N
         jMenu5.setText("Manutenção");
 
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario.png"))); // NOI18N
         jMenuItem8.setText("Pessoas");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +171,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem8);
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/produto.png"))); // NOI18N
         jMenuItem7.setText("Produtos");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +181,57 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem7);
 
+        jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mm.png"))); // NOI18N
+        jMenuItem15.setText("Movimentações Financeiras");
+        jMenu5.add(jMenuItem15);
+
+        jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/invoice.png"))); // NOI18N
+        jMenuItem16.setText("Notas Fiscais");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem16);
+
         jMenuBar1.add(jMenu5);
+
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mm.png"))); // NOI18N
+        jMenu7.setText("Financeiro");
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open caixa.png"))); // NOI18N
+        jMenu9.setText("Caixas");
+
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open cash.png"))); // NOI18N
+        jMenuItem11.setText("Novo Período de Caixa");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem11);
+
+        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close cash.png"))); // NOI18N
+        jMenuItem12.setText("Encerrar Período de Caixa");
+        jMenu9.add(jMenuItem12);
+
+        jMenu7.add(jMenu9);
+
+        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/enter money.png"))); // NOI18N
+        jMenuItem13.setText("Entrada");
+        jMenu7.add(jMenuItem13);
+
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/money.png"))); // NOI18N
+        jMenuItem14.setText("Saída");
+        jMenu7.add(jMenuItem14);
+
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -179,7 +239,7 @@ public class frmMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 789, Short.MAX_VALUE)
+            .addGap(0, 941, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,6 +300,16 @@ public class frmMenu extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        frmMAf_caixa frm = new frmMAf_caixa();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        frmMNotaFiscalEntrada frm = new frmMNotaFiscalEntrada();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,9 +352,17 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

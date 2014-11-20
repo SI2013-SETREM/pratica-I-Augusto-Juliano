@@ -42,15 +42,7 @@ public class frmMPessoaContatos extends javax.swing.JDialog {
     private void refreshForm() {
         if (_psc_codigo != null) {
             txtContato.setText(_psc_codigo.getPsc_contato());
-            Integer indx = 0;
-            for (int i = 0; i < cboTipoContato.getItemCount(); i++) {
-                Pub_tipocontato haha = (Pub_tipocontato) cboTipoContato.getItemAt(i);
-                if (haha.getTpc_codigo() == _psc_codigo.getTpc_codigo().getTpc_codigo()) {
-                    indx = i;
-                }
-            }
-            cboTipoContato.setSelectedIndex(indx);
-            cboTipoContato.setSelectedItem(_psc_codigo.getTpc_codigo());
+            cboTipoContato.getModel().setSelectedItem(_psc_codigo.getTpc_codigo());
         } else {
             cboTipoContato.setSelectedItem(null);
             txtContato.setText("");

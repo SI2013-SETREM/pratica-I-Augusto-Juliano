@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import java.util.List;
@@ -17,6 +16,7 @@ import util.HibernateUtil;
  * @author juliano
  */
 public class Fin_afcaixaDAO {
+
     private Session session;
 
     public Fin_afcaixaDAO() {
@@ -41,5 +41,23 @@ public class Fin_afcaixaDAO {
 
     public List<Fin_afcaixa> findAll() {
         return session.createQuery("from Fin_afcaixa").list();
+    }
+
+    public Boolean verifyInclude(Integer _cai_codigo) {
+        Integer count = session.createQuery("from Fin_afcaixa where afc_datafechamento is null and cai_codigo =" + _cai_codigo + " order by afc_datafechamento desc").list().size();
+        if (count == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Fin_afcaixa findLastValue(Integer _cai_codigo) {
+        Integer count = session.createQuery("from Fin_afcaixa where afc_datafechamento is not null and cai_codigo =" + _cai_codigo + " order by afc_datafechamento desc").list().size();
+        if (count > 0) {
+            return (Fin_afcaixa) session.createQuery("from Fin_afcaixa where afc_datafechamento is not null and cai_codigo =" + _cai_codigo + " order by afc_datafechamento desc");
+        } else {
+            return null;
+        }
     }
 }

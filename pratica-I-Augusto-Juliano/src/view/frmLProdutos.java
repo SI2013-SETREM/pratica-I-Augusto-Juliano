@@ -369,11 +369,15 @@ public class frmLProdutos extends javax.swing.JFrame {
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         int _linha = jTable1.getSelectedRow();
         if (_linha > -1) {
-            Integer operacao = JOptionPane.showConfirmDialog(null, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
-            if (operacao == JOptionPane.YES_OPTION) {
-                int _pro_codigo = Integer.parseInt((String) jTable1.getValueAt(_linha, 0));
-                pro_produto = daoProdutos.findById(_pro_codigo);
-                daoProdutos.delete(pro_produto);
+            try {
+                Integer operacao = JOptionPane.showConfirmDialog(null, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (operacao == JOptionPane.YES_OPTION) {
+                    int _pro_codigo = Integer.parseInt((String) jTable1.getValueAt(_linha, 0));
+                    pro_produto = daoProdutos.findById(_pro_codigo);
+                    daoProdutos.delete(pro_produto);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Desculpe, este registro não pode ser removido!", "Alerta", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -438,7 +442,7 @@ public class frmLProdutos extends javax.swing.JFrame {
         } else {
             JRBeanCollectionDataSource dsourse = new JRBeanCollectionDataSource(lstPro_produto);
             Map parametros = new HashMap();
-            parametros.put("foto", this.getClass().getResource("../images/logo.png"));
+            parametros.put("logo", this.getClass().getResource("../images/sotos.png"));
 
             try {
                 JasperPrint jpr = JasperFillManager.fillReport("reports/rptProdutos.jasper", parametros, dsourse);
