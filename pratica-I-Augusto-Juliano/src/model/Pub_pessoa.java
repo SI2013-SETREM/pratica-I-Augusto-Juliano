@@ -129,7 +129,7 @@ public class Pub_pessoa {
     }
 
     public void setPes_senha(String pes_senha) {
-        this.pes_senha = pes_senha;
+        this.pes_senha = Encrypt.convertStringToMd5(pes_senha.toUpperCase());
     }
 
     public boolean isPes_status() {

@@ -1,5 +1,9 @@
 package dao;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import model.Pub_pessoa;
 import org.hibernate.Session;
@@ -55,6 +59,14 @@ public class Pub_pessoaDAO {
     public Integer findCountByCPFCNPJ(Integer _pes_codigo, String _param) {
         return session.createQuery("from Pub_pessoa where pes_login is null and pes_cnpjcpf = '" + _param + "' and pes_codigo !=" + _pes_codigo).list().size();
     }
+    
+    public Integer findCountByLogin(Integer _pes_codigo, String _pes_login) {
+        return session.createQuery("from Pub_pessoa where upper(pes_login) like upper(:pes_login) and pes_codigo != :pes_codigo").setParameter("pes_login", _pes_login).setParameter("pes_codigo", _pes_codigo).list().size();
+    }
+    
+    public Integer findByLoginPassword(String _pes_login, String _pes_senha) {
+        return session.createQuery("from Pub_pessoa where upper(pes_login) = upper(:pes_login) and upper(pes_senha) = upper(:pes_senha)").setParameter("pes_login", _pes_login).setParameter("pes_senha", _pes_senha).list().size();
+    }
 
     public List<Pub_pessoa> filterParam(String _parametro, Integer _index) {
         if (_index == 0) {
@@ -77,4 +89,13 @@ public class Pub_pessoaDAO {
             return session.createQuery("from Pub_pessoa pes_login is null order by pes_razaosocial asc").list();
         }
     }
+
+    public List<Pub_pessoa> findAllUsuarios() {
+        return session.createQuery("from Pub_pessoa where pes_login is not null order by pes_razaosocial asc").list();
+    }
+
+    public List<Pub_pessoa> findUsuariosByLogin(String _pes_login) {
+        return session.createQuery("from Pub_pessoa where upper(pes_login) like upper(:pes_login) order by pes_razaosocial asc").setParameter("pes_login", "%" + _pes_login + "%").list();
+    }
+
 }
