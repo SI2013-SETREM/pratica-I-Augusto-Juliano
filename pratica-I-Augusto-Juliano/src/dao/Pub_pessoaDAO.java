@@ -59,13 +59,17 @@ public class Pub_pessoaDAO {
     public Integer findCountByCPFCNPJ(Integer _pes_codigo, String _param) {
         return session.createQuery("from Pub_pessoa where pes_login is null and pes_cnpjcpf = '" + _param + "' and pes_codigo !=" + _pes_codigo).list().size();
     }
-    
+
     public Integer findCountByLogin(Integer _pes_codigo, String _pes_login) {
         return session.createQuery("from Pub_pessoa where upper(pes_login) like upper(:pes_login) and pes_codigo != :pes_codigo").setParameter("pes_login", _pes_login).setParameter("pes_codigo", _pes_codigo).list().size();
     }
-    
+
     public Integer findByLoginPassword(String _pes_login, String _pes_senha) {
         return session.createQuery("from Pub_pessoa where upper(pes_login) = upper(:pes_login) and upper(pes_senha) = upper(:pes_senha)").setParameter("pes_login", _pes_login).setParameter("pes_senha", _pes_senha).list().size();
+    }
+
+    public Pub_pessoa getByLoginPassword(String _pes_login, String _pes_senha) {
+        return (Pub_pessoa) session.createQuery("from Pub_pessoa where upper(pes_login) = upper(:pes_login) and upper(pes_senha) = upper(:pes_senha)").setParameter("pes_login", _pes_login).setParameter("pes_senha", _pes_senha).list().get(0);
     }
 
     public List<Pub_pessoa> filterParam(String _parametro, Integer _index) {

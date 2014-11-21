@@ -8,6 +8,7 @@ package view;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +16,6 @@ import java.net.URL;
  */
 public class frmMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmMenu
-     */
     public frmMenu() {
         initComponents();
         URL url = this.getClass().getResource("../images/logo.png");
@@ -48,15 +46,15 @@ public class frmMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
+        menuUsuario = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        menuAbreCaixa = new javax.swing.JMenuItem();
+        menuFechaCaixa = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -66,6 +64,18 @@ public class frmMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu - Controle Financeiro");
         setExtendedState(MAXIMIZED_BOTH);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cadastros.png"))); // NOI18N
         jMenu2.setText("Cadastros");
@@ -155,14 +165,14 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
-        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario.png"))); // NOI18N
-        jMenuItem18.setText("Usuários");
-        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+        menuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario.png"))); // NOI18N
+        menuUsuario.setText("Usuários");
+        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem18ActionPerformed(evt);
+                menuUsuarioActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem18);
+        jMenu4.add(menuUsuario);
 
         jMenu2.add(jMenu4);
 
@@ -209,20 +219,25 @@ public class frmMenu extends javax.swing.JFrame {
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open caixa.png"))); // NOI18N
         jMenu9.setText("Caixas");
 
-        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open cash.png"))); // NOI18N
-        jMenuItem11.setText("Novo Período de Caixa");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        menuAbreCaixa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        menuAbreCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open cash.png"))); // NOI18N
+        menuAbreCaixa.setText("Novo Período de Caixa");
+        menuAbreCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                menuAbreCaixaActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem11);
+        jMenu9.add(menuAbreCaixa);
 
-        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close cash.png"))); // NOI18N
-        jMenuItem12.setText("Encerrar Período de Caixa");
-        jMenu9.add(jMenuItem12);
+        menuFechaCaixa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        menuFechaCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close cash.png"))); // NOI18N
+        menuFechaCaixa.setText("Encerrar Período de Caixa");
+        menuFechaCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFechaCaixaActionPerformed(evt);
+            }
+        });
+        jMenu9.add(menuFechaCaixa);
 
         jMenu7.add(jMenu9);
 
@@ -315,10 +330,10 @@ public class frmMenu extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void menuAbreCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbreCaixaActionPerformed
         frmMAf_caixa frm = new frmMAf_caixa();
         frm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_menuAbreCaixaActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         frmMNotaFiscalEntrada frm = new frmMNotaFiscalEntrada();
@@ -330,10 +345,27 @@ public class frmMenu extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         frmLUsuarios frm = new frmLUsuarios();
         frm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
+    }//GEN-LAST:event_menuUsuarioActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void menuFechaCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFechaCaixaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuFechaCaixaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if ("U".equals(util.utilidades.pes_codigo.getPes_nivelacesso())) {
+            menuAbreCaixa.setEnabled(false);
+            menuFechaCaixa.setEnabled(false);
+            menuUsuario.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "TU NÃO TEM MORAL NENHUMA, SEU BOSTA!", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -382,13 +414,10 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -397,5 +426,8 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem menuAbreCaixa;
+    private javax.swing.JMenuItem menuFechaCaixa;
+    private javax.swing.JMenuItem menuUsuario;
     // End of variables declaration//GEN-END:variables
 }

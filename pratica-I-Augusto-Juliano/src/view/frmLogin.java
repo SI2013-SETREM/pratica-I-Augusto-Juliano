@@ -178,7 +178,7 @@ public class frmLogin extends javax.swing.JDialog {
                 String senha = Encrypt.convertStringToMd5(Arrays.toString(txtSenha.getPassword()));
                 if (pessoaDAO.findByLoginPassword(txtUsuario.getText(), senha) == 1) {
                     frmMenu frm = new frmMenu();
-
+                    util.utilidades.pes_codigo = pessoaDAO.getByLoginPassword(txtUsuario.getText(), senha);
                     this.dispose();
                     frm.setVisible(true);
                 } else {
