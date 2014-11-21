@@ -363,7 +363,6 @@ public class frmMenu extends javax.swing.JFrame {
             menuAbreCaixa.setEnabled(false);
             menuFechaCaixa.setEnabled(false);
             menuUsuario.setEnabled(false);
-            JOptionPane.showMessageDialog(null, "TU NÃO TEM MORAL NENHUMA, SEU BOSTA!", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
 
