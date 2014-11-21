@@ -7,29 +7,33 @@ package view;
 
 import dao.Fin_parcelaDAO;
 import dao.Pub_pessoaDAO;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Fin_parcela;
 import model.Pub_pessoa;
+import org.exolab.castor.types.Date;
 
 /**
  *
  * @author juliano
  */
 public class frmLPessoas extends javax.swing.JFrame {
-    
+
     private Pub_pessoaDAO daoPessoas = new Pub_pessoaDAO();
     private Fin_parcelaDAO daoParcelas = new Fin_parcelaDAO();
     private Pub_pessoa pub_pessoa = new Pub_pessoa();
     private Fin_parcela fin_parcela = new Fin_parcela();
     private JScrollPane jScrollPane4;
-    
+
     public frmLPessoas() {
         initComponents();
     }
-    
+
     public void filterPeoples(String _param, Integer _index) {
         daoPessoas = new Pub_pessoaDAO();
         DefaultTableModel dados = (DefaultTableModel) gridPessoas.getModel();
@@ -51,7 +55,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             });
         });
     }
-    
+
     public void refreshGrid(String _pes_tipo) {
         daoPessoas = new Pub_pessoaDAO();
         DefaultTableModel dados = (DefaultTableModel) gridPessoas.getModel();
@@ -73,7 +77,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             });
         });
     }
-    
+
     public void refreshGridCPagar(Integer _pes_codigo) {
         daoParcelas = new Fin_parcelaDAO();
         DefaultTableModel dados = (DefaultTableModel) gridCPagar.getModel();
@@ -83,15 +87,14 @@ public class frmLPessoas extends javax.swing.JFrame {
                 "" + t.getPar_codigo(),
                 "" + t.getAfc_codigo().getCai_codigo().getCai_descricao(),
                 "" + t.getPar_numerodocumento(),
-                "" + t.getPar_datavencimento(),
-                "" + t.getPar_valortotal(),
-                "" + t.getPar_valorpago(),
-                "" + t.getPar_datapagamento(),
-                "" + t.getPar_datacadastro()
-            });
+                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datavencimento()),
+                DecimalFormat.getCurrencyInstance().format(t.getPar_valortotal()),
+                DecimalFormat.getCurrencyInstance().format(t.getPar_valorpago()),
+                t.getPar_datapagamento() != null ? new SimpleDateFormat("dd-MM-yy").format(t.getPar_datapagamento()) : null,
+                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datacadastro()),});
         });
     }
-    
+
     public void refreshGridCReceber(Integer _pes_codigo) {
         daoParcelas = new Fin_parcelaDAO();
         DefaultTableModel dados = (DefaultTableModel) gridCReceber.getModel();
@@ -101,15 +104,15 @@ public class frmLPessoas extends javax.swing.JFrame {
                 "" + t.getPar_codigo(),
                 "" + t.getAfc_codigo().getCai_codigo().getCai_descricao(),
                 "" + t.getPar_numerodocumento(),
-                "" + t.getPar_datavencimento(),
-                "" + t.getPar_valortotal(),
-                "" + t.getPar_valorpago(),
-                "" + t.getPar_datapagamento(),
-                "" + t.getPar_datacadastro()
-            });
-        });
+                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datavencimento()),
+                DecimalFormat.getCurrencyInstance().format(t.getPar_valortotal()),
+                DecimalFormat.getCurrencyInstance().format(t.getPar_valorpago()),
+                t.getPar_datapagamento() != null ? new SimpleDateFormat("dd-MM-yy").format(t.getPar_datapagamento()) : null,
+                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datacadastro()),});
+        }
+        );
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -118,16 +121,15 @@ public class frmLPessoas extends javax.swing.JFrame {
         cboTppPessoa = new javax.swing.JComboBox();
         cboTppFilter = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
-        btnAdd1 = new javax.swing.JButton();
-        btnEdit1 = new javax.swing.JButton();
+        btnPay = new javax.swing.JButton();
         btnDel1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        gridCPagar = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         gridCReceber = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        gridCPagar = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -174,19 +176,11 @@ public class frmLPessoas extends javax.swing.JFrame {
             }
         });
 
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        btnAdd1.setText("Adicionar");
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnPay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btnPay.setText("Receber");
+        btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
-            }
-        });
-
-        btnEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        btnEdit1.setText("Editar");
-        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEdit1ActionPerformed(evt);
+                btnPayActionPerformed(evt);
             }
         });
 
@@ -197,50 +191,6 @@ public class frmLPessoas extends javax.swing.JFrame {
                 btnDel1ActionPerformed(evt);
             }
         });
-
-        gridCPagar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "par_codigo", "Caixa", "Número Documento", "Data Vencimento", "Valor Total (R$)", "Valor Pago (R$)", "Data Pagamento", "Data Cadastro"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        gridCPagar.setName("jTableDados"); // NOI18N
-        jScrollPane3.setViewportView(gridCPagar);
-        if (gridCPagar.getColumnModel().getColumnCount() > 0) {
-            gridCPagar.getColumnModel().getColumn(0).setMinWidth(0);
-            gridCPagar.getColumnModel().getColumn(0).setPreferredWidth(0);
-            gridCPagar.getColumnModel().getColumn(0).setMaxWidth(0);
-        }
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Contas a Pagar", jPanel1);
 
         gridCReceber.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -266,6 +216,11 @@ public class frmLPessoas extends javax.swing.JFrame {
             }
         });
         gridCReceber.setName("jTableDados"); // NOI18N
+        gridCReceber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                gridCReceberFocusGained(evt);
+            }
+        });
         jScrollPane5.setViewportView(gridCReceber);
         if (gridCReceber.getColumnModel().getColumnCount() > 0) {
             gridCReceber.getColumnModel().getColumn(0).setMinWidth(0);
@@ -286,6 +241,55 @@ public class frmLPessoas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Contas a Receber", jPanel2);
 
+        gridCPagar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "par_codigo", "Caixa", "Número Documento", "Data Vencimento", "Valor Total (R$)", "Valor Pago (R$)", "Data Pagamento", "Data Cadastro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        gridCPagar.setName("jTableDados"); // NOI18N
+        gridCPagar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                gridCPagarFocusGained(evt);
+            }
+        });
+        jScrollPane3.setViewportView(gridCPagar);
+        if (gridCPagar.getColumnModel().getColumnCount() > 0) {
+            gridCPagar.getColumnModel().getColumn(0).setMinWidth(0);
+            gridCPagar.getColumnModel().getColumn(0).setPreferredWidth(0);
+            gridCPagar.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Contas a Pagar", jPanel1);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -294,9 +298,7 @@ public class frmLPessoas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1))
@@ -307,8 +309,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd1)
-                    .addComponent(btnEdit1)
+                    .addComponent(btnPay)
                     .addComponent(btnDel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1))
@@ -521,13 +522,29 @@ public class frmLPessoas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-
-    }//GEN-LAST:event_btnAdd1ActionPerformed
-
-    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
-
-    }//GEN-LAST:event_btnEdit1ActionPerformed
+    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
+        int _linha = 0;
+        String message = "";
+        if (btnPay.getText() == "Receber") {
+            _linha = gridCReceber.getSelectedRow();
+            message = "Deseja Efetuar o Recebimento ?";
+        } else {
+            _linha = gridCPagar.getSelectedRow();
+            message = "Deseja Efetuar o Pagamento ?";
+        }
+        if (_linha > -1) {
+            Integer operacao = JOptionPane.showConfirmDialog(null, message, "Alerta", JOptionPane.YES_NO_OPTION);
+            if (operacao == JOptionPane.YES_OPTION) {
+                int _par_codigo = Integer.parseInt((String) gridCReceber.getValueAt(_linha, 0));
+                frmPagamentoParcela frm = new frmPagamentoParcela(this, true, _par_codigo);
+                frm.setVisible(true);
+                refreshGridCPagar(frm._par_codigo.getRcd_codigo().getPes_codigo().getPes_codigo());
+                refreshGridCReceber(frm._par_codigo.getRcd_codigo().getPes_codigo().getPes_codigo());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnDel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDel1ActionPerformed
     }//GEN-LAST:event_btnDel1ActionPerformed
@@ -589,7 +606,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             dados.setNumRows(0);
         }
     }//GEN-LAST:event_cboTppPessoaPropertyChange
-    
+
     private void refreshGridContas() {
         try {
             int _linha = gridPessoas.getSelectedRow();
@@ -633,6 +650,14 @@ public class frmLPessoas extends javax.swing.JFrame {
         refreshGrid("C");
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void gridCPagarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gridCPagarFocusGained
+        btnPay.setText("Pagar");        // TODO add your handling code here:
+    }//GEN-LAST:event_gridCPagarFocusGained
+
+    private void gridCReceberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gridCReceberFocusGained
+        btnPay.setText("Receber");        // TODO add your handling code here:
+    }//GEN-LAST:event_gridCReceberFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -647,7 +672,7 @@ public class frmLPessoas extends javax.swing.JFrame {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -675,11 +700,10 @@ public class frmLPessoas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnDel1;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnEdit1;
+    private javax.swing.JButton btnPay;
     private javax.swing.JComboBox cboTppFilter;
     private javax.swing.JComboBox cboTppPessoa;
     private javax.swing.JTable gridCPagar;

@@ -14,11 +14,13 @@
         <group>
             <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMPessoas.java</file>
             <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMenu.java</file>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/model/Fin_parcela.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmPagamentoParcela.java</file>
             <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmLProdutos.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmLPessoas.java</file>
             <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMParcelaES.java</file>
-            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/dao/Fin_afcaixaDAO.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMPessoaContatos.java</file>
             <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMReceitaDespesa.java</file>
+            <file>file:/C:/Users/juliano/Documents/NetBeansProjects/pratica-I-Augusto-Juliano/trunk/pratica-I-Augusto-Juliano/src/view/frmMAf_caixa.java</file>
         </group>
     </open-files>
 </project-private>
