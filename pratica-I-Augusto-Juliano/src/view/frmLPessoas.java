@@ -7,8 +7,13 @@ package view;
 
 import dao.Fin_parcelaDAO;
 import dao.Pub_pessoaDAO;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -76,6 +81,15 @@ public class frmLPessoas extends javax.swing.JFrame {
                 "" + t.getPes_datacadastro()
             });
         });
+    }
+
+    public void refreshIconImage() {
+        URL url = this.getClass().getResource("../images/logo.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        ImageIcon icon = new ImageIcon(imagemTitulo);
+        if (gridCReceber.getRowCount() > 0) {
+            gridCReceber.setValueAt(icon, 0, 8);
+        }
     }
 
     public void refreshGridCPagar(Integer _pes_codigo) {
@@ -197,14 +211,14 @@ public class frmLPessoas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "par_codigo", "Caixa", "Número Documento", "Data Vencimento", "Valor Total (R$)", "Valor Pago (R$)", "Data Pagamento", "Data Cadastro"
+                "par_codigo", "Caixa", "Número Documento", "Data Vencimento", "Valor Total (R$)", "Valor Pago (R$)", "Data Pagamento", "Data Cadastro", "Situação"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -226,6 +240,7 @@ public class frmLPessoas extends javax.swing.JFrame {
             gridCReceber.getColumnModel().getColumn(0).setMinWidth(0);
             gridCReceber.getColumnModel().getColumn(0).setPreferredWidth(0);
             gridCReceber.getColumnModel().getColumn(0).setMaxWidth(0);
+            gridCReceber.getColumnModel().getColumn(8).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -519,23 +534,25 @@ public class frmLPessoas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        refreshGrid("C");
     }//GEN-LAST:event_formWindowOpened
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         int _linha = 0;
         String message = "";
+        int _par_codigo = 0;
         if (btnPay.getText() == "Receber") {
             _linha = gridCReceber.getSelectedRow();
+            _par_codigo = Integer.parseInt((String) gridCReceber.getValueAt(_linha, 0));
             message = "Deseja Efetuar o Recebimento ?";
         } else {
             _linha = gridCPagar.getSelectedRow();
+            _par_codigo = Integer.parseInt((String) gridCPagar.getValueAt(_linha, 0));
             message = "Deseja Efetuar o Pagamento ?";
         }
         if (_linha > -1) {
             Integer operacao = JOptionPane.showConfirmDialog(null, message, "Alerta", JOptionPane.YES_NO_OPTION);
             if (operacao == JOptionPane.YES_OPTION) {
-                int _par_codigo = Integer.parseInt((String) gridCReceber.getValueAt(_linha, 0));
                 frmPagamentoParcela frm = new frmPagamentoParcela(this, true, _par_codigo);
                 frm.setVisible(true);
                 refreshGridCPagar(frm._par_codigo.getRcd_codigo().getPes_codigo().getPes_codigo());
@@ -553,7 +570,8 @@ public class frmLPessoas extends javax.swing.JFrame {
     }//GEN-LAST:event_gridPessoasPropertyChange
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, " Amarelo --> Parcelas Atrasadas \n Preto --> Parcelas em Prazo \n Verde --> Parcelas Pagas", "Informação", JOptionPane.INFORMATION_MESSAGE);
+//        JOptionPane.showMessageDialog(null, " Amarelo --> Parcelas Atrasadas \n Preto --> Parcelas em Prazo \n Verde --> Parcelas Pagas", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        refreshIconImage();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

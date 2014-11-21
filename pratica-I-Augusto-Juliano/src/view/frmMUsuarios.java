@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import model.Encrypt;
 import model.Pub_pessoa;
 
 /**
@@ -168,12 +169,13 @@ public class frmMUsuarios extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radAdministrador)
-                    .addComponent(radUsuario)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(radAdministrador)
+                        .addComponent(radUsuario)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -192,7 +194,8 @@ public class frmMUsuarios extends javax.swing.JFrame {
                     pub_pessoa.setPes_datacadastro(new Date());
                     pub_pessoa.setPes_razaosocial(txtRazaoSocial.getText().toUpperCase());
                     pub_pessoa.setPes_login(txtLogin.getText().toUpperCase());
-                    pub_pessoa.setPes_senha(Arrays.toString(txtSenha.getPassword()));
+                    String senha = Encrypt.convertStringToMd5(Arrays.toString(txtSenha.getPassword()));
+                    pub_pessoa.setPes_senha(senha);
                     pub_pessoa.setPes_nivelacesso(radAdministrador.isSelected() ? "A" : "U");
 
                     daoPessoa.insert(pub_pessoa);
