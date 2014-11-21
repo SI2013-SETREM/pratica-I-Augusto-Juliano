@@ -5,6 +5,8 @@
  */
 package view;
 
+import charts.ChartParcelasMesEntrada;
+import charts.ChartParcelasMesSaida;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -55,9 +57,14 @@ public class frmMenu extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         menuAbreCaixa = new javax.swing.JMenuItem();
         menuFechaCaixa = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        menuPrevEntrada = new javax.swing.JMenuItem();
+        menuPrevSaida = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -239,6 +246,11 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu9.add(menuFechaCaixa);
 
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F10, 0));
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrato.png"))); // NOI18N
+        jMenuItem11.setText("Extrato do Caixa");
+        jMenu9.add(jMenuItem11);
+
         jMenu7.add(jMenu9);
 
         jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
@@ -261,7 +273,38 @@ public class frmMenu extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem15);
 
+        jMenuItem12.setText("jMenuItem12");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem12);
+
         jMenuBar1.add(jMenu7);
+
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chart.png"))); // NOI18N
+        jMenu8.setText("Gráficos");
+
+        menuPrevEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cash in.png"))); // NOI18N
+        menuPrevEntrada.setText("Previsão de Entradas");
+        menuPrevEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPrevEntradaActionPerformed(evt);
+            }
+        });
+        jMenu8.add(menuPrevEntrada);
+
+        menuPrevSaida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graf out.png"))); // NOI18N
+        menuPrevSaida.setText("Previsão de Saídas");
+        menuPrevSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPrevSaidaActionPerformed(evt);
+            }
+        });
+        jMenu8.add(menuPrevSaida);
+
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -366,6 +409,20 @@ public class frmMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void menuPrevEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPrevEntradaActionPerformed
+        ChartParcelasMesEntrada hue = new ChartParcelasMesEntrada(null, null);
+        hue.setVisible(true);
+    }//GEN-LAST:event_menuPrevEntradaActionPerformed
+
+    private void menuPrevSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPrevSaidaActionPerformed
+        ChartParcelasMesSaida hue = new ChartParcelasMesSaida(null, null);
+        hue.setVisible(true);
+    }//GEN-LAST:event_menuPrevSaidaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,10 +466,13 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
@@ -427,6 +487,8 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuAbreCaixa;
     private javax.swing.JMenuItem menuFechaCaixa;
+    private javax.swing.JMenuItem menuPrevEntrada;
+    private javax.swing.JMenuItem menuPrevSaida;
     private javax.swing.JMenuItem menuUsuario;
     // End of variables declaration//GEN-END:variables
 }
