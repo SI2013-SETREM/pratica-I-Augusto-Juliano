@@ -177,35 +177,39 @@ public class frmPagamentoParcela extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (formValidation()) {
             try {
-                Double valor = Double.parseDouble(txtValor.getText().replace(",", "."));
-                if (_par_codigo.getPar_valortotal() == valor) {
-                    Date data = getDate(txtDataPagamento.getText());
-                    _par_codigo.setPar_datapagamento(data.toDate());
-                    _par_codigo.setPar_valorpago(valor);
-                    daoParcela.update(_par_codigo);
-                } else if (valor >= _par_codigo.getPar_valortotal()) {
-                    JOptionPane.showMessageDialog(null, "O valor informado não pode ser maior que o valor da parcela!", "Alerta", JOptionPane.WARNING_MESSAGE);
+                if (_par_codigo.getPar_datavencimento() != null && _par_codigo.getPar_valorpago() > 0) {
+                    JOptionPane.showMessageDialog(null, "A parcela já consta como paga/recebida na base de dados, o lançamento foi cancelado!", "Alerta", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    if ("E".equals(_par_codigo.getRcd_codigo().getCtm_codigo().getCtm_entradasaida())) {
-                        Double novaParcela = (_par_codigo.getPar_valortotal() - valor);
-                        Double antigaParcela = _par_codigo.getPar_valortotal();
-                        Fin_parcela nova = new Fin_parcela();
-                        _par_codigo.setPar_valortotal(valor);
-                        _par_codigo.setPar_valorpago(valor);
-                        _par_codigo.setPar_status(true);
+                    Double valor = Double.parseDouble(txtValor.getText().replace(",", "."));
+                    if (_par_codigo.getPar_valortotal() == valor) {
                         Date data = getDate(txtDataPagamento.getText());
                         _par_codigo.setPar_datapagamento(data.toDate());
+                        _par_codigo.setPar_valorpago(valor);
                         daoParcela.update(_par_codigo);
-                        nova = _par_codigo;
-                        nova.setPar_pai(_par_codigo);
-                        nova.setPar_valortotal(novaParcela);
-                        nova.setPar_status(false);
-                        nova.setPar_valorpago(0.00);
-                        nova.setPar_datapagamento(null);
-                        nova.setPar_codigo(0);
-                        daoParcela.insert(nova);
+                    } else if (valor >= _par_codigo.getPar_valortotal()) {
+                        JOptionPane.showMessageDialog(null, "O valor informado não pode ser maior que o valor da parcela!", "Alerta", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null, "O valor informado não pode ser menor que o valor da parcela!");
+                        if ("E".equals(_par_codigo.getRcd_codigo().getCtm_codigo().getCtm_entradasaida())) {
+                            Double novaParcela = (_par_codigo.getPar_valortotal() - valor);
+                            Double antigaParcela = _par_codigo.getPar_valortotal();
+                            Fin_parcela nova = new Fin_parcela();
+                            _par_codigo.setPar_valortotal(valor);
+                            _par_codigo.setPar_valorpago(valor);
+                            _par_codigo.setPar_status(true);
+                            Date data = getDate(txtDataPagamento.getText());
+                            _par_codigo.setPar_datapagamento(data.toDate());
+                            daoParcela.update(_par_codigo);
+                            nova = _par_codigo;
+                            nova.setPar_pai(_par_codigo);
+                            nova.setPar_valortotal(novaParcela);
+                            nova.setPar_status(false);
+                            nova.setPar_valorpago(0.00);
+                            nova.setPar_datapagamento(null);
+                            nova.setPar_codigo(0);
+                            daoParcela.insert(nova);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "O valor informado não pode ser menor que o valor da parcela!");
+                        }
                     }
                 }
                 this.dispose();
