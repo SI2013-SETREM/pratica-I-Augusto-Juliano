@@ -43,6 +43,10 @@ public class Fin_afcaixaDAO {
         return session.createQuery("from Fin_afcaixa").list();
     }
 
+    public Fin_afcaixa getOpendedCai_codigo(Integer _cai_codigo) {
+        return (Fin_afcaixa) session.createQuery("from Fin_afcaixa where afc_datafechamento is null and cai_codigo =" + _cai_codigo).list().get(0);
+    }
+
     public Boolean verifyInclude(Integer _cai_codigo) {
         Integer count = session.createQuery("from Fin_afcaixa where afc_datafechamento is null and cai_codigo =" + _cai_codigo + " order by afc_datafechamento desc").list().size();
         if (count == 0) {

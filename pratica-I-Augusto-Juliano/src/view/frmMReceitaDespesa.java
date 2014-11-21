@@ -5,17 +5,23 @@
  */
 package view;
 
+import dao.Fin_afcaixaDAO;
 import dao.Fin_categoriamovimentacaoDAO;
 import dao.Fin_receitadespesaDAO;
 import dao.Pub_pessoaDAO;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Fin_afcaixa;
 import model.Fin_categoriamovimentacao;
+import model.Fin_parcela;
 import model.Fin_receitadespesa;
 import model.Pub_pessoa;
+import org.exolab.castor.types.Date;
 
 /**
  *
@@ -27,6 +33,7 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
     private Fin_receitadespesaDAO daoReceitaDespesa = new Fin_receitadespesaDAO();
     private Pub_pessoaDAO daoPessoas = new Pub_pessoaDAO();
     private Fin_categoriamovimentacaoDAO daoCategorias = new Fin_categoriamovimentacaoDAO();
+    private Fin_afcaixaDAO daoAFCaixa = new Fin_afcaixaDAO();
     private int rcd_codigo = 0;
 
     public frmMReceitaDespesa(Integer _rcd_codigo) {
@@ -58,15 +65,24 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             DefaultTableModel dados = (DefaultTableModel) gridParcelas.getModel();
             dados.setNumRows(0);
             for (int i = 0; i < fin_receitadespesa.getPar_codigo().size(); i++) {
+                Fin_parcela par = fin_receitadespesa.getPar_codigo().get(i);
+                String pago;
+                if (par.getPar_valorpago() > 0) {
+                    pago = "SIM";
+                } else {
+                    pago = "NÃO";
+                }
                 dados.addRow(new String[]{
-                    "" + fin_receitadespesa.getPar_codigo().get(i).getPar_codigo(),
-                    "" + fin_receitadespesa.getPar_codigo().get(i).getRcd_codigo().getRcd_codigo(),
+                    "" + par.getPar_codigo(),
+                    "" + par.getRcd_codigo().getRcd_codigo(),
                     "0",
-                    "" + fin_receitadespesa.getPar_codigo().get(i).getAfc_codigo().getAfc_codigo(),
-                    "" + fin_receitadespesa.getPar_codigo().get(i).getPar_datavencimento(),
-                    "" + fin_receitadespesa.getPar_codigo().get(i).getPar_valortotal(),
-                    "" + fin_receitadespesa.getPar_codigo().get(i).getPar_numerodocumento()
-                });
+                    "" + par.getAfc_codigo().getAfc_codigo(),
+                    new SimpleDateFormat("MM-dd-yy").format(par.getPar_datavencimento()),
+                    "" + par.getPar_valortotal(),
+                    "" + par.getPar_numerodocumento(),
+                    pago,
+                    "SIM".equals(pago) ? new SimpleDateFormat("MM-dd-yy").format(par.getPar_datapagamento()) : null,}
+                );
             }
         } else {
             cboPessoa.setSelectedItem(null);
@@ -98,6 +114,19 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
         }
     }
 
+    private void refreshValores() {
+        try {
+            Double valorTotal = 0.00;
+            DefaultTableModel dados = (DefaultTableModel) gridParcelas.getModel();
+            for (int i = 0; i < dados.getRowCount(); i++) {
+                valorTotal += Double.parseDouble(dados.getValueAt(i, 5).toString());
+            }
+            txtValorLiquido.setText(String.valueOf(valorTotal));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "O recalculo de valores da nota falhou!", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,7 +149,6 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
         tabProPar = new javax.swing.JTabbedPane();
         panelParcelas = new javax.swing.JPanel();
         btnAddPar = new javax.swing.JButton();
-        btnEditPar = new javax.swing.JButton();
         btnDelPar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         gridParcelas = new javax.swing.JTable();
@@ -232,14 +260,6 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             }
         });
 
-        btnEditPar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        btnEditPar.setText("Editar");
-        btnEditPar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditParActionPerformed(evt);
-            }
-        });
-
         btnDelPar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnDelPar.setText("Deletar");
         btnDelPar.addActionListener(new java.awt.event.ActionListener() {
@@ -253,14 +273,14 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "par_Codigo", "rcd_codigo", "par_pai", "afc_codigo", "Vencimento", "Valor Total", "Número Documento"
+                "par_Codigo", "rcd_codigo", "par_pai", "afc_codigo", "Vencimento", "Valor Total", "Número Documento", "Efetivada", "Data Pagamento", "data cadastro"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -272,6 +292,7 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             }
         });
         gridParcelas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        gridParcelas.setColumnSelectionAllowed(true);
         gridParcelas.setName("jTableDados"); // NOI18N
         gridParcelas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -289,6 +310,7 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(gridParcelas);
+        gridParcelas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (gridParcelas.getColumnModel().getColumnCount() > 0) {
             gridParcelas.getColumnModel().getColumn(0).setMinWidth(0);
             gridParcelas.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -302,6 +324,9 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             gridParcelas.getColumnModel().getColumn(3).setMinWidth(0);
             gridParcelas.getColumnModel().getColumn(3).setPreferredWidth(0);
             gridParcelas.getColumnModel().getColumn(3).setMaxWidth(0);
+            gridParcelas.getColumnModel().getColumn(9).setMinWidth(0);
+            gridParcelas.getColumnModel().getColumn(9).setPreferredWidth(0);
+            gridParcelas.getColumnModel().getColumn(9).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout panelParcelasLayout = new javax.swing.GroupLayout(panelParcelas);
@@ -311,9 +336,7 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             .addGroup(panelParcelasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAddPar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditPar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
                 .addComponent(btnDelPar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(panelParcelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,9 +350,7 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
             .addGroup(panelParcelasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelParcelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelParcelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEditPar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelPar))
+                    .addComponent(btnDelPar)
                     .addComponent(btnAddPar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(panelParcelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,16 +505,59 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorLiquidoKeyPressed
 
-    private void btnAddParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddParActionPerformed
+    private Date getDate(String data) {
+        String[] lsData = data.split("-");
+        Date dataF = new Date();
+        dataF.setDay(Short.parseShort(lsData[1]));
+        dataF.setMonth(Short.parseShort(lsData[0]));
+        dataF.setYear(Short.parseShort(lsData[2]));
+        return dataF;
+    }
 
+    private void btnAddParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddParActionPerformed
+        Fin_parcela par = new Fin_parcela();
+        par.setRcd_codigo(new Fin_receitadespesa());
+        frmMParcelaES frm = new frmMParcelaES(this, true, null);
+        frm.setVisible(true);
+        par = frm._par_codigo;
+        DefaultTableModel dados = (DefaultTableModel) gridParcelas.getModel();
+        String pago;
+        if (par.getPar_valorpago() > 0) {
+            pago = "SIM";
+        } else {
+            pago = "NÃO";
+        }
+        dados.addRow(new String[]{
+            "" + par.getPar_codigo(),
+            "" + par.getRcd_codigo().getRcd_codigo(),
+            "0",
+            "" + par.getAfc_codigo().getAfc_codigo(),
+            new SimpleDateFormat("MM-dd-yy").format(par.getPar_datavencimento()),
+            "" + par.getPar_valortotal(),
+            "" + par.getPar_numerodocumento(),
+            pago,
+            "SIM".equals(pago) ? new SimpleDateFormat("MM-dd-yy").format(par.getPar_datapagamento()) : null,
+            new SimpleDateFormat("MM-dd-yy").format(par.getPar_datacadastro())
+        }
+        );
+        refreshValores();
     }//GEN-LAST:event_btnAddParActionPerformed
 
-    private void btnEditParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditParActionPerformed
-
-    }//GEN-LAST:event_btnEditParActionPerformed
-
     private void btnDelParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelParActionPerformed
-
+        int _linha = gridParcelas.getSelectedRow();
+        if (_linha > -1) {
+            try {
+                Integer operacao = JOptionPane.showConfirmDialog(null, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (operacao == JOptionPane.YES_OPTION) {
+                    DefaultTableModel dados = (DefaultTableModel) gridParcelas.getModel();
+                    dados.removeRow(_linha);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Desculpe, este registro não pode ser removido!", "Alerta", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um registro!", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnDelParActionPerformed
 
     private void gridParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gridParcelasMouseClicked
@@ -509,7 +573,55 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_gridParcelasKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            if (formValidation()) {
+                if (rcd_codigo == 0) { //inserção
+                    fin_receitadespesa = new Fin_receitadespesa();
+                    fin_receitadespesa.setCtm_codigo((Fin_categoriamovimentacao) cboCatMovimentacao.getSelectedItem());
+                    fin_receitadespesa.setPes_codigo((Pub_pessoa) cboPessoa.getSelectedItem());
+                    fin_receitadespesa.setRcd_codigo(0);
+                    fin_receitadespesa.setRcd_datacadastro(new Date(System.currentTimeMillis()).toDate());
+                    fin_receitadespesa.setRcd_desconto(Double.parseDouble(txtDesconto.getText()));
+                    fin_receitadespesa.setRcd_numeronota(txtNumNota.getText());
+                    fin_receitadespesa.setRcd_observacao(txtObservacao.getText());
+                    fin_receitadespesa.setRcd_fixa(false);
+                    fin_receitadespesa.setRcd_valorbruto(Double.parseDouble(txtValorBruto.getText()));
+                    fin_receitadespesa.setRcd_valorliquido(Double.parseDouble(txtValorLiquido.getText()));
+                    fin_receitadespesa.setPar_codigo(new ArrayList<Fin_parcela>());
+                    for (int i = 0; i < gridParcelas.getRowCount(); i++) {
+                        Fin_parcela fin_parcela = new Fin_parcela();
+                        fin_parcela.setAfc_codigo(daoAFCaixa.findById(Integer.parseInt((String) gridParcelas.getValueAt(i, 3))));
+                        fin_parcela.setPar_codigo(Integer.parseInt((String) gridParcelas.getValueAt(i, 0)));
+                        fin_parcela.setPar_datacadastro(getDate((String) gridParcelas.getValueAt(i, 9)).toDate());
+                        if (!String.valueOf(gridParcelas.getValueAt(i, 8)).isEmpty() && gridParcelas.getValueAt(i, 8) != null ) {
+                            fin_parcela.setPar_datapagamento(getDate((String) gridParcelas.getValueAt(i, 8)).toDate());
+                            fin_parcela.setPar_valorpago(Double.parseDouble((String) gridParcelas.getValueAt(i, 5)));
+                            fin_parcela.setPar_status(true);
+                        } else {
+                            fin_parcela.setPar_datapagamento(null);
+                            fin_parcela.setPar_valorpago(0.00);
+                            fin_parcela.setPar_status(false);
+                        }
+                        fin_parcela.setPar_datavencimento(getDate((String) gridParcelas.getValueAt(i, 4)).toDate());
+                        fin_parcela.setPar_numerodocumento((String) gridParcelas.getValueAt(i, 6));
+                        fin_parcela.setPar_pai(null);
+                        fin_parcela.setPar_valortotal(Double.parseDouble((String) gridParcelas.getValueAt(i, 5)));
+                        fin_parcela.setRcd_codigo(fin_receitadespesa);
+                        fin_receitadespesa.getPar_codigo().add(fin_parcela);
+                    }
+                    daoReceitaDespesa.insert(fin_receitadespesa);
+                } else { //edição
+                    /*pub_estado.setEst_descricao(txtDesc.getText().toUpperCase());
+                     pub_estado.setEst_sigla(txtSigla.getText().toUpperCase().substring(0, 2));
+                     daoEstados.update(pub_estado);*/
+                }
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
 
+                this.dispose();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro, o registro não foi salvo!", "Alerta", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -530,16 +642,21 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMReceitaDespesa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -554,7 +671,6 @@ public class frmMReceitaDespesa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPar;
     private javax.swing.JButton btnDelPar;
-    private javax.swing.JButton btnEditPar;
     private javax.swing.JComboBox cboCatMovimentacao;
     private javax.swing.JComboBox cboPessoa;
     private javax.swing.JTable gridParcelas;

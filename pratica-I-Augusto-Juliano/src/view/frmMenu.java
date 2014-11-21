@@ -184,6 +184,11 @@ public class frmMenu extends javax.swing.JFrame {
         jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mm.png"))); // NOI18N
         jMenuItem15.setText("Movimentações Financeiras");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem15);
 
         jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
@@ -309,6 +314,11 @@ public class frmMenu extends javax.swing.JFrame {
         frmMNotaFiscalEntrada frm = new frmMNotaFiscalEntrada();
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        frmMReceitaDespesa frm = new frmMReceitaDespesa(0);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments
