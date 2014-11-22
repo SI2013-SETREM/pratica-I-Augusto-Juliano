@@ -64,7 +64,7 @@
 				<reportElement x="515" y="20" width="40" height="20" uuid="8ad02fb6-29b4-4abb-bdb9-1ce3a9b7ec43"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="76" y="104" width="221" height="20" uuid="fe0fbb31-5ee3-45d7-8e9d-b98013ab9219"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -145,7 +145,7 @@
 				</textElement>
 				<text><![CDATA[CPF/CNPJ:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="367" y="104" width="187" height="20" uuid="be13d836-1a73-4ea6-83e5-2795d5192cde"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -159,7 +159,7 @@
 				</textElement>
 				<text><![CDATA[Cidade:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="76" y="124" width="221" height="20" uuid="a71e07bf-f3a4-4c35-9099-e67dbe704724"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -173,7 +173,7 @@
 				</textElement>
 				<text><![CDATA[Bairro:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="367" y="124" width="187" height="20" uuid="e4804d2f-b460-40be-8758-e2a9e579d661"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -187,7 +187,7 @@
 				</textElement>
 				<text><![CDATA[Logradouro: ]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="76" y="144" width="221" height="20" uuid="97aa042b-7712-4982-94f5-06b9002a0bbd"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -201,7 +201,7 @@
 				</textElement>
 				<text><![CDATA[Número:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="367" y="144" width="187" height="20" uuid="3ecf2c30-12e8-43ba-8304-bcb0357a493b"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -215,7 +215,7 @@
 				</textElement>
 				<text><![CDATA[Complemento:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="76" y="164" width="221" height="20" uuid="ab4c2b74-ef59-4f0a-9cee-23140730320c"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -226,35 +226,35 @@
 	</pageHeader>
 	<detail>
 		<band height="18" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="0" y="5" width="122" height="13" isPrintWhenDetailOverflows="true" uuid="2baae0ad-3b10-4b30-acee-0188abf32fe7"/>
 				<box rightPadding="5"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{afc_codigo.cai_codigo.cai_descricao}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="122" y="5" width="81" height="13" isPrintWhenDetailOverflows="true" uuid="512d03a5-2a82-40fe-8c62-1d94530607a0"/>
 				<box rightPadding="5"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{par_numerodocumento}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="203" y="5" width="73" height="13" isPrintWhenDetailOverflows="true" uuid="4cd32816-45c0-4b09-a03d-74d4e6d1850d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{par_datavencimento}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="367" y="5" width="80" height="13" isPrintWhenDetailOverflows="true" uuid="42394f41-46b8-439d-b696-587b4b0d63b4"/>
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[($F{par_status} == true ? "Pago" : "Não Pago")]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="276" y="5" width="91" height="13" isPrintWhenDetailOverflows="true" uuid="7f9d2a59-6014-4aec-8d51-75a08a108e46"/>
 				<textElement textAlignment="Right" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{par_valortotal}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="447" y="5" width="107" height="13" isPrintWhenDetailOverflows="true" uuid="1969f1ba-fdba-4646-8989-560e3febc465"/>
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{par_datapagamento}]]></textFieldExpression>
