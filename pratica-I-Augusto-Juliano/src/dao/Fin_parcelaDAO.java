@@ -102,4 +102,7 @@ public class Fin_parcelaDAO {
         return session.createQuery("from Fin_parcela where rcd_codigo.pes_codigo =" + _pes_codigo + " and rcd_codigo.ctm_codigo.ctm_entradasaida = 'E' order by par_datavencimento asc").list();
     }
 
+    public List<Fin_parcela> findContasByPes(Integer _pes_codigo) {
+        return session.createQuery("from Fin_parcela where rcd_codigo.pes_codigo =" + _pes_codigo + " order by rcd_codigo.ctm_codigo.ctm_entradasaida, par_datavencimento desc").list();
+    }
 }

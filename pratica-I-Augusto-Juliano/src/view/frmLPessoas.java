@@ -13,6 +13,10 @@ import java.awt.Toolkit;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -21,6 +25,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Fin_parcela;
 import model.Pub_pessoa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import org.exolab.castor.types.Date;
 
 /**
@@ -167,6 +176,7 @@ public class frmLPessoas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         gridCPagar = new javax.swing.JTable();
+        btnPay1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -328,6 +338,14 @@ public class frmLPessoas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Contas a Pagar", jPanel1);
 
+        btnPay1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imprimir2.png"))); // NOI18N
+        btnPay1.setText("Imprimir");
+        btnPay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPay1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -337,6 +355,8 @@ public class frmLPessoas extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPay1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1))
@@ -348,7 +368,8 @@ public class frmLPessoas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPay)
-                    .addComponent(btnDel1))
+                    .addComponent(btnDel1)
+                    .addComponent(btnPay1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1))
         );
@@ -699,6 +720,35 @@ public class frmLPessoas extends javax.swing.JFrame {
         btnPay.setText("Receber");        // TODO add your handling code here:
     }//GEN-LAST:event_gridCReceberFocusGained
 
+    private void btnPay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPay1ActionPerformed
+        List<Fin_parcela> lstFin_parcela = new ArrayList<Fin_parcela>();
+
+        int _linha = gridPessoas.getSelectedRow();
+        if (_linha > -1) {
+            int _pes_codigo = Integer.parseInt((String) gridPessoas.getValueAt(_linha, 0));
+
+            lstFin_parcela = daoParcelas.findContasByPes(_pes_codigo);
+
+            if (lstFin_parcela.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Não há registros para serem impressos!", "Alerta", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JRBeanCollectionDataSource dsourse = new JRBeanCollectionDataSource(lstFin_parcela);
+                Map parametros = new HashMap();
+                parametros.put("logo", this.getClass().getResource("../images/sotos.png"));
+
+                try {
+                    JasperPrint jpr = JasperFillManager.fillReport("reports/rptContasPessoa.jasper", parametros, dsourse);
+                    JasperViewer.viewReport(jpr, false);
+
+                } catch (JRException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma pessoa para Imprimir!");
+        }
+    }//GEN-LAST:event_btnPay1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -745,6 +795,7 @@ public class frmLPessoas extends javax.swing.JFrame {
     private javax.swing.JButton btnDel1;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPay;
+    private javax.swing.JButton btnPay1;
     private javax.swing.JComboBox cboTppFilter;
     private javax.swing.JComboBox cboTppPessoa;
     private javax.swing.JTable gridCPagar;
