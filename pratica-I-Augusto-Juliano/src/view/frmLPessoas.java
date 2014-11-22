@@ -97,6 +97,16 @@ public class frmLPessoas extends javax.swing.JFrame {
         DefaultTableModel dados = (DefaultTableModel) gridCPagar.getModel();
         dados.setNumRows(0);
         daoParcelas.findCPagarByPes(_pes_codigo).stream().forEach((t) -> {
+            String situacao = "";
+            if (t.getPar_valorpago() > 0) {
+                situacao = "PAGA";
+            } else {
+                if (t.getPar_datavencimento().after(new Date(System.currentTimeMillis()).toDate())) {
+                    situacao = "ATRASADA";
+                } else {
+                    situacao = "EM ABERTO";
+                }
+            }
             dados.addRow(new String[]{
                 "" + t.getPar_codigo(),
                 "" + t.getAfc_codigo().getCai_codigo().getCai_descricao(),
@@ -105,7 +115,8 @@ public class frmLPessoas extends javax.swing.JFrame {
                 DecimalFormat.getCurrencyInstance().format(t.getPar_valortotal()),
                 DecimalFormat.getCurrencyInstance().format(t.getPar_valorpago()),
                 t.getPar_datapagamento() != null ? new SimpleDateFormat("dd-MM-yy").format(t.getPar_datapagamento()) : null,
-                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datacadastro()),});
+                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datacadastro()),
+                situacao});
         });
     }
 
@@ -114,6 +125,16 @@ public class frmLPessoas extends javax.swing.JFrame {
         DefaultTableModel dados = (DefaultTableModel) gridCReceber.getModel();
         dados.setNumRows(0);
         daoParcelas.findCReceberByPes(_pes_codigo).stream().forEach((t) -> {
+            String situacao = "";
+            if (t.getPar_valorpago() > 0) {
+                situacao = "PAGA";
+            } else {
+                if (t.getPar_datavencimento().after(new Date(System.currentTimeMillis()).toDate())) {
+                    situacao = "ATRASADA";
+                } else {
+                    situacao = "EM ABERTO";
+                }
+            }
             dados.addRow(new String[]{
                 "" + t.getPar_codigo(),
                 "" + t.getAfc_codigo().getCai_codigo().getCai_descricao(),
@@ -122,7 +143,9 @@ public class frmLPessoas extends javax.swing.JFrame {
                 DecimalFormat.getCurrencyInstance().format(t.getPar_valortotal()),
                 DecimalFormat.getCurrencyInstance().format(t.getPar_valorpago()),
                 t.getPar_datapagamento() != null ? new SimpleDateFormat("dd-MM-yy").format(t.getPar_datapagamento()) : null,
-                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datacadastro()),});
+                new SimpleDateFormat("dd-MM-yy").format(t.getPar_datacadastro()),
+                situacao
+            });
         }
         );
     }
@@ -261,14 +284,14 @@ public class frmLPessoas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "par_codigo", "Caixa", "Número Documento", "Data Vencimento", "Valor Total (R$)", "Valor Pago (R$)", "Data Pagamento", "Data Cadastro"
+                "par_codigo", "Caixa", "Número Documento", "Data Vencimento", "Valor Total (R$)", "Valor Pago (R$)", "Data Pagamento", "Data Cadastro", "Situação"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

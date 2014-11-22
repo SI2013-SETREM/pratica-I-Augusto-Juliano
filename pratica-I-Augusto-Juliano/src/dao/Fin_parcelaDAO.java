@@ -42,24 +42,55 @@ public class Fin_parcelaDAO {
     }
 
     public List<Fin_parcela> findAll() {
-        return session.createQuery("from Fin_parcela").list();
+        return session.createQuery("from Fin_parcela order by par_datavencimento asc").list();
     }
 
-    public List<Object[]> getParcelasChartEntrada(String dataInicio, String dataFim) {
+    public List<Fin_parcela> findFiltered(Integer _pes_codigo, Integer _cai_codigo, String dataInicio, String dataFim, Boolean _pagas, String _tpp_codigo) {
+        String sql = "from Fin_parcela where par_codigo > 0";
+        if (_pes_codigo > 0) {
+            sql += " and rcd_codigo.pes_codigo =" + _pes_codigo;
+        }
+        if (_cai_codigo > 0) {
+            sql += " and afc_codigo.cai_codigo =" + _cai_codigo;
+        }
+        if (!dataInicio.isEmpty() && !dataFim.isEmpty()) {
+            sql += " and par_datavencimento between '" + dataInicio + "' and '" + dataFim + "'";
+        }
+        if (_pagas) {
+            sql += " and par_valorpago > 0";
+        }
+        if (!_tpp_codigo.isEmpty() && !"T".equals(_tpp_codigo)) {
+            sql += " and rcd_codigo.pes_codigo.pes_tipo = '" + _tpp_codigo + "'";
+        }
+        sql += " order by par_datavencimento asc";
+        return session.createQuery(sql).list();
+    }
+
+    public List<Object[]> getParcelasChartEntrada(String dataInicio, String dataFim, Boolean _pagas) {
+        String sqlApeend = "";
+        if (_pagas) {
+            sqlApeend = " and par_status = true ";
+        }
         return session.createSQLQuery("select sum(par.par_valortotal), EXTRACT(month from par.par_datavencimento) as mes, EXTRACT(year from par.par_datavencimento) as ano \n"
                 + "from fin_parcela par\n"
                 + "inner join fin_receitadespesa rcd on rcd.rcd_codigo = par.rcd_codigo\n"
                 + "inner join fin_categoriamovimentacao ctm on ctm.ctm_codigo = rcd.ctm_codigo\n"
                 + "where ctm.ctm_entradasaida = 'E' and par.par_datavencimento between '" + dataInicio + "' and '" + dataFim + "'\n"
+                + sqlApeend
                 + "group by mes, ano order by ano, mes").list();
     }
 
-    public List<Object[]> getParcelasChartSaida(String dataInicio, String dataFim) {
+    public List<Object[]> getParcelasChartSaida(String dataInicio, String dataFim, Boolean _pagas) {
+        String sqlApeend = "";
+        if (_pagas) {
+            sqlApeend = " and par_status = true ";
+        }
         return session.createSQLQuery("select sum(par.par_valortotal), EXTRACT(month from par.par_datavencimento) as mes, EXTRACT(year from par.par_datavencimento) as ano \n"
                 + "from fin_parcela par\n"
                 + "inner join fin_receitadespesa rcd on rcd.rcd_codigo = par.rcd_codigo\n"
                 + "inner join fin_categoriamovimentacao ctm on ctm.ctm_codigo = rcd.ctm_codigo\n"
-               + "where ctm.ctm_entradasaida = 'S' and par.par_datavencimento between '" + dataInicio + "' and '" + dataFim + "'\n"
+                + "where ctm.ctm_entradasaida = 'S' and par.par_datavencimento between '" + dataInicio + "' and '" + dataFim + "'\n"
+                + sqlApeend
                 + "group by mes, ano order by ano, mes").list();
     }
 

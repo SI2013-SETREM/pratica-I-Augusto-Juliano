@@ -67,7 +67,7 @@ public class ChartParcelasMesEntrada extends javax.swing.JFrame {
         String[] lsDataFim = dataFim.split("/");
         lsDataFim[2] = "00" + lsDataFim[2];
         dataFim = lsDataFim[0] + "/" + lsDataFim[1] + "/" + lsDataFim[2];
-        List<Object[]> lsParcela = daoParcela.getParcelasChartEntrada(dataInicio, dataFim);
+        List<Object[]> lsParcela = daoParcela.getParcelasChartEntrada(dataInicio, dataFim, checkEfetivadas.isSelected());
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < lsParcela.size(); i++) {
             String mes = "";
@@ -116,6 +116,7 @@ public class ChartParcelasMesEntrada extends javax.swing.JFrame {
         txtFim = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        checkEfetivadas = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gráfico");
@@ -147,6 +148,8 @@ public class ChartParcelasMesEntrada extends javax.swing.JFrame {
             }
         });
 
+        checkEfetivadas.setText("Efetivadas?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,8 +165,10 @@ public class ChartParcelasMesEntrada extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFim, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkEfetivadas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +179,8 @@ public class ChartParcelasMesEntrada extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(checkEfetivadas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -231,6 +237,7 @@ public class ChartParcelasMesEntrada extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox checkEfetivadas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
