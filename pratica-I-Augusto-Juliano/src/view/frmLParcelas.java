@@ -66,11 +66,29 @@ public class frmLParcelas extends javax.swing.JFrame {
             });
         }
         );
+        String dataInicio = "01/";
+        String dataFim = "01/";
+        if ((new Date(System.currentTimeMillis()).getMonth() - 3) > 9) {
+            dataInicio += (new Date(System.currentTimeMillis()).getMonth() - 3);
+        } else {
+            dataInicio += "0" + (new Date(System.currentTimeMillis()).getMonth() - 3);
+        }
+        dataInicio += "/" + (new Date(System.currentTimeMillis()).getYear());
+
+        if ((new Date(System.currentTimeMillis()).getMonth() + 3) > 12) {
+            dataFim += "03/" + (new Date(System.currentTimeMillis()).getYear() + 1);
+        }
+        txtInicio.setText(dataInicio);
+        txtFim.setText(dataFim);
     }
 
     private String returnDateStr(String _data) {
-        String[] ute = _data.split("/");
-        return ute[0] + "/" + ute[1] + "/00" + ute[2];
+        if (!_data.isEmpty()) {
+            String[] ute = _data.split("/");
+            return ute[0] + "/" + ute[1] + "/00" + ute[2];
+        } else {
+            return "";
+        }
     }
 
     private void refreshGridPar() {
